@@ -1,0 +1,23 @@
+{
+    "name": "printerous/spec-generator",
+    "description": "Product Specification Generator",
+    "keywords": [
+        "product specification"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ahmadadityakj",
+            "email": "aditya@printerous.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "laravel/framework": "4.*|5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Printerous\\SpecGenerator\\": "src/"
+        }
+    }
+}
