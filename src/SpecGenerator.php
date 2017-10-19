@@ -26,7 +26,7 @@ class SpecGenerator
         }
     }
 
-    function generateShop($orderDetail,$sku){
+    private function generateShop($orderDetail,$sku){
         $product = $this->getSkuType($orderDetail->sku_id);
         $project_data = $orderDetail->project_data;
         $spec = array();
@@ -88,7 +88,7 @@ class SpecGenerator
         }
     }
 
-    function getSkuType($skuId){
+    private function getSkuType($skuId){
         $canvas_art_type = array(1,2,3,55,56,57,4,5,6,7,8,9,10,11,12,13); // 16 skus
         $pillow_type = array(14,15); // 2 skus
         $notebook_a5 = array(16);
@@ -142,7 +142,7 @@ class SpecGenerator
         if(in_array($skuId, $scarf)) return 'scarf';
     }
 
-    function generateMoments($orderDetail){
+    private function generateMoments($orderDetail){
         $project_data = $orderDetail->project_data;
         $spec = array();
         switch($project_data->type){
@@ -186,7 +186,7 @@ class SpecGenerator
         return $spec;
     }
 
-    function generateV3($orderDetail){
+    private function generateV3($orderDetail){
         $product = $orderDetail->project_data->prod;
         $options = $orderDetail->project_data->options;
         $properties = $orderDetail->project_data->properties;
@@ -472,7 +472,7 @@ class SpecGenerator
         return $spec;
     }
 
-    function createUrl($value){
+    private function createUrl($value){
         $temp = parse_url($value);
         $url = $value;
         if(isset($temp['scheme']) && $temp['schema'] != 'https'){
@@ -481,7 +481,7 @@ class SpecGenerator
         return $url;
     }
 
-    function specFilter($spec){
+    private function specFilter($spec){
         $custSpec = '';
         if (empty($spec)){
             $custSpec = '';
