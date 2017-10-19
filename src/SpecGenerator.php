@@ -19,11 +19,26 @@ class SpecGenerator
                 $this->generateMoments($orderDetail);
                 break;
             case "panorama":
+                $this->generatePanorama($orderDetail);
                 break;
             case "custom_orders":
                 $this->generateV3($orderDetail);
                 break;
         }
+    }
+
+    private function generatePanorama($orderDetail){
+        $product = $orderDetail->project_data->type;
+        $project_data = $orderDetail->project_data;
+        $spec = array();
+        switch($product){
+            case "canvas":
+                $spec['title'] = "Canvas";
+                if(@$project_data->size) $spec['size'] = "Size: ".ucwords($project_data->size);
+                if(@$project_data->layout) $spec['layout'] = "Layout: ".ucwords($project_data->layout);
+                break;
+        }
+        return $spec;
     }
 
     private function generateShop($orderDetail,$sku){
@@ -86,6 +101,7 @@ class SpecGenerator
                 if(@$sku->title) $spec['title'] = $sku->title;
                 break;
         }
+        return $spec;
     }
 
     private function getSkuType($skuId){
