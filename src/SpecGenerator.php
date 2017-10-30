@@ -5,26 +5,43 @@ namespace Printerous\SpecGenerator;
 class SpecGenerator
 {
     function generate($type, $orderDetail, $sku = null){
+        $spec = array();
+
+        //validate
+        if(isset($orderDetail) && !is_object($orderDetail)){
+            throw new \Exception("Order detail must be an object");
+        }
+        if(isset($sku) && !is_object($sku)){
+            throw new \Exception("Sku must be an object");
+        }
+        if(!is_object($orderDetail->project_data)){
+            $orderDetail->project_data = json_decode($orderDetail->project_data);
+            if(is_null($orderDetail->project_data)){
+                throw new \Exception("Invalid project data");
+            }
+        }
+
         switch($type){
             case "v3":
-                $this->generateV3($orderDetail);
+                $spec = $this->generateV3($orderDetail);
                 break;
             case "arterous":
-                $this->generateShop($orderDetail, $sku);
+                $spec = $this->generateShop($orderDetail, $sku);
                 break;
             case "shop":
-                $this->generateShop($orderDetail, $sku);
+                $spec = $this->generateShop($orderDetail, $sku);
                 break;
             case "moments":
-                $this->generateMoments($orderDetail);
+                $spec = $this->generateMoments($orderDetail);
                 break;
             case "panorama":
-                $this->generatePanorama($orderDetail);
+                $spec = $this->generatePanorama($orderDetail);
                 break;
             case "custom_orders":
-                $this->generateV3($orderDetail);
+                $spec = $this->generateV3($orderDetail);
                 break;
         }
+        return $spec;
     }
 
     private function generatePanorama($orderDetail){
