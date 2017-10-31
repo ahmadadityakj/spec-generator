@@ -381,9 +381,9 @@ class SpecGenerator
             }else{
                 if (@$options->quantity) $spec['quantity'] = $options->quantity." x ".($orderDetail->project_data->display_name?:$orderDetail->project_data->prod);
             }
-            if (@$options->printopt) $spec['printopt'] = "Option: ".specFilter($options->printopt);
-            if (@$options->size) $spec['size'] = "Size: ".specFilter($options->size);
-            if (@$options->sides) $spec['sides'] = "Sides: ".specFilter($options->sides). " (".($options->sides == 2? "Two" : "One").")";
+            if (@$options->printopt) $spec['printopt'] = "Option: ".$this->specFilter($options->printopt);
+            if (@$options->size) $spec['size'] = "Size: ".$this->specFilter($options->size);
+            if (@$options->sides) $spec['sides'] = "Sides: ".$this->specFilter($options->sides). " (".($options->sides == 2? "Two" : "One").")";
             if(@$options->paper){
                 if(@$orderDetail->projec_data->properties->Kertas){
                     $spec['paper'] = "Material: " . $orderDetail->projec_data->properties->Kertas;
@@ -392,8 +392,8 @@ class SpecGenerator
                 }
             }
             if (@$options->material) $spec['material'] = "Material: ".$options->material;
-            if (@$options->shape) $spec['shape'] = "Shape: ".specFilter($options->shape);
-            if (@$options->flap) $spec['flap'] = "Flap: ".specFilter($options->flap);
+            if (@$options->shape) $spec['shape'] = "Shape: ".$this->specFilter($options->shape);
+            if (@$options->flap) $spec['flap'] = "Flap: ".$this->specFilter($options->flap);
             if (@$options->laminate && $options->laminate != 'none') $spec['laminate'] = "Laminasi: ".$options->laminate;
             if (@$options->finish) $spec['finish'] = "Finishing: ".$options->finish;
             if(@$options->finishing){

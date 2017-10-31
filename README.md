@@ -9,5 +9,6 @@ composer require ahmadadityakj/spec-generator
 $specObj = new SpecGenerator();
 //type -> (v3, arterous, shop, moments, panorama, custom_orders)
 $specArray = $specObj->generate($typeString, $orderDetailObject, $skuObject);
-
+$project_data->specification = $specArray;
 ```
+
