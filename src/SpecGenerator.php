@@ -222,7 +222,7 @@ class SpecGenerator
     private function generateV3($orderDetail){
         $product = $orderDetail->project_data->prod;
         $options = $orderDetail->project_data->options;
-        $properties = $orderDetail->project_data->properties;
+        $properties = @$orderDetail->project_data->properties?: null;
         $spec = array();
         //business card & square card
         if (in_array($product, array('businesscard', 'squarecard'))) {
