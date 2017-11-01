@@ -234,7 +234,7 @@ class SpecGenerator
             }
             $spec['size'] = "Size: " . $options->size;
             $spec['sides'] = "Sides: " . $options->sides;
-            $spec['paper'] = "Papertype: " . (@$orderDetail->project_data->kertas ? $orderDetail->project_data->kertas : $options->paper);
+            $spec['paper'] = "Papertype: " . (@$orderDetail->project_data->properties->Kertas ? $orderDetail->project_data->properties->Kertas : $options->paper);
             if ($product == 'businesscard') {
                 $spec['finishing'] = "Finishing: " . (@$options->finishing ? $options->finishing : "");
                 $spec['finish'] = "Cornertype: " . (@$options->finish ? $options->finish : "");
@@ -253,7 +253,7 @@ class SpecGenerator
             $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Brochure");
             $spec['size'] = "Size: " . $options->size;
             $spec['sides'] = "Sides: " . $options->sides;
-            $spec['paper'] = "Papertype: " . (@$orderDetail->project_data->kertas ? $orderDetail->project_data->kertas : $options->paper);
+            $spec['paper'] = "Papertype: " . (@$orderDetail->project_data->properties->Kertas ? $orderDetail->project_data->properties->Kertas : $options->paper);
             if (@$options->finish) {
                 if ($options->finish == 2) $spec['finish'] = "Folding: Bifold";
                 if ($options->finish == 'z_fold') $spec['finish'] = "Folding: Trifold - Z fold";
@@ -274,7 +274,7 @@ class SpecGenerator
                 if($options->size == 'wall') $spec['size'] = 'Side: 1 (side)';
                 if($options->size == 'desk') $spec['size'] = 'Side: 2 (sides)';
             }*/
-            $spec['paper'] = "Papertype: " . (@$orderDetail->project_data->kertas ? $orderDetail->project_data->kertas : $options->paper);
+            $spec['paper'] = "Papertype: " . (@$orderDetail->project_data->properties->Kertas ? $orderDetail->project_data->properties->Kertas : $options->paper);
             $spec['laminate'] = "Lamination: " . (@$options->laminate ? $options->laminate : "");
             if (@$options->size) $spec['size'] = "Type: " . $options->size;
             if (@$options->sheet) $spec['sheet'] = "Sheets: " . $options->sheet;
@@ -309,7 +309,7 @@ class SpecGenerator
             $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Calendar");
             if (@$options->size) $spec['size'] = "Size: " . $options->size;
             if (@$options->sides) $spec['sides'] = "Sides: " . $options->sides;
-            $spec['paper'] = "Papertype: " . (@$orderDetail->project_data->kertas ? $orderDetail->project_data->kertas : $options->paper);
+            $spec['paper'] = "Papertype: " . (@$orderDetail->project_data->properties->Kertas ? $orderDetail->project_data->properties->Kertas : $options->paper);
             if (@$options->speed) {
                 if (strpos($options->speed, 'fast') !== false) $spec['speed'] = "Speed: Fast";
                 if (strpos($options->speed, 'same') !== false) $spec['speed'] = "Speed: Same Day";
@@ -388,8 +388,8 @@ class SpecGenerator
             if (@$options->size) $spec['size'] = "Size: ".$this->specFilter($options->size);
             if (@$options->sides) $spec['sides'] = "Sides: ".$this->specFilter($options->sides). " (".($options->sides == 2? "Two" : "One").")";
             if(@$options->paper){
-                if(@$orderDetail->projec_data->properties->Kertas){
-                    $spec['paper'] = "Material: " . $orderDetail->projec_data->properties->Kertas;
+                if(@$orderDetail->project_data->properties->Kertas){
+                    $spec['paper'] = "Material: " . $orderDetail->project_data->properties->Kertas;
                 }else{
                     $spec['paper'] = "Material: " . $options->paper;
                 }
@@ -446,8 +446,8 @@ class SpecGenerator
         if($product == "spanduk"){
             if (@$options->quantity) $spec['quantity'] = $options->quantity." x ".($orderDetail->project_data->display_name?:$orderDetail->project_data->prod);
             if(@$options->paper){
-                if(@$orderDetail->projec_data->properties->Kertas){
-                    $spec['paper'] = "Material: " . $orderDetail->projec_data->properties->Kertas;
+                if(@$orderDetail->project_data->properties->Kertas){
+                    $spec['paper'] = "Material: " . $orderDetail->project_data->properties->Kertas;
                 }else{
                     $spec['paper'] = "Material: " . $options->paper;
                 }
