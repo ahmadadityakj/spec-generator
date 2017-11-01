@@ -512,7 +512,7 @@ class SpecGenerator
     private function createUrl($value){
         $temp = parse_url($value);
         $url = $value;
-        if(isset($temp['scheme']) && $temp['schema'] != 'https'){
+        if(isset($temp['scheme']) && $temp['scheme'] != 'https'){
             $url = "http://".$url;
         }
         return $url;
