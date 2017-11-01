@@ -288,9 +288,10 @@ class SpecGenerator
             }
             if (@$orderDetail->project_data->design_file) {
                 $idx = 0;
+                $spec['design_file'] = "";
                 foreach ($orderDetail->project_data->design_file as $key => $val) {
                     if ($key === 'email') {
-                        $spec['design_file'] = "File sent: By email";
+                        $spec['design_file'] .= "File sent: By email";
                     } else {
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
@@ -317,9 +318,10 @@ class SpecGenerator
             }
             if (@$orderDetail->project_data->design_file) {
                 $idx = 0;
+                $spec['design_file'] = "";
                 foreach ($orderDetail->project_data->design_file as $key => $val) {
                     if ($key === 'email') {
-                        $spec['design_file'] = "File sent: By email";
+                        $spec['design_file'] .= "File sent: By email";
                     } else {
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
@@ -359,9 +361,10 @@ class SpecGenerator
             }
             if (@$orderDetail->project_data->design_file) {
                 $idx = 0;
+                $spec['design_file'] = "";
                 foreach ($orderDetail->project_data->design_file as $key => $val) {
                     if ($key === 'email') {
-                        $spec['design_file'] = "File sent: By email";
+                        $spec['design_file'] .= "File sent: By email";
                     } else {
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
@@ -416,9 +419,10 @@ class SpecGenerator
             }
             if (@$orderDetail->project_data->design_file) {
                 $idx = 0;
+                $spec['design_file'] = "";
                 foreach ($orderDetail->project_data->design_file as $key => $val) {
                     if ($key === 'email') {
-                        $spec['design_file'] = "File sent: By email";
+                        $spec['design_file'] .= "File sent: By email";
                     } else {
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
@@ -463,9 +467,10 @@ class SpecGenerator
             }
             if (@$orderDetail->project_data->design_file) {
                 $idx = 0;
+                $spec['design_file'] = "";
                 foreach ($orderDetail->project_data->design_file as $key => $val) {
                     if ($key === 'email') {
-                        $spec['design_file'] = "File sent: By email";
+                        $spec['design_file'] .= "File sent: By email";
                     } else {
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
