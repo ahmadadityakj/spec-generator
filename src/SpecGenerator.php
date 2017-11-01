@@ -353,7 +353,7 @@ class SpecGenerator
                         $val = (array) $val;
                     }
                     if($val['qty'] != 0){
-                        $spec['qtySizeMap'] .= $val['color']." ".$val['size'].", ".$val['qty']."<br/>";
+                        $spec['qtySizeMap'] .= (@$val['color']?:"")." ".(@$val['size']?$val['size'].",":"")." ".(@$val['qty']?:"")."<br/>";
                     }
                 }
             }
@@ -436,7 +436,7 @@ class SpecGenerator
                         $val = (array) $val;
                     }
                     if($val['qty'] != 0){
-                        $spec['qtySizeMap'] .= $val['color']." ".$val['size'].", ".$val['qty']."<br/>";
+                        $spec['qtySizeMap'] .= (@$val['color']?:"")." ".(@$val['size']?$val['size'].",":"")." ".(@$val['qty']?:"")."<br/>";
                     }
                 }
             }
