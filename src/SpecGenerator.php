@@ -488,6 +488,9 @@ class SpecGenerator
             if (@$product) $spec['prod'] = "Product: ".$this->specFilter($product);
             if (@$properties) {
                 $spec['properties'] = '';
+                if(is_object($properties)){
+                    $properties = (array) $properties;
+                }
                 if(is_array($properties)) {
                     foreach ($properties as $key => $val) {
                         if (is_array($val)) {
