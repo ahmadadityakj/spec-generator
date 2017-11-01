@@ -349,6 +349,9 @@ class SpecGenerator
             if (@$options->qtySizeMap){
                 $spec['qtySizeMap'] = "Quantity: <br/>";
                 foreach($options->qtySizeMap as $key=>$val){
+                    if(!is_array($val)){
+                        $val = (array) $val;
+                    }
                     if($val['qty'] != 0){
                         $spec['qtySizeMap'] .= $val['color']." ".$val['size'].", ".$val['qty']."<br/>";
                     }
@@ -429,6 +432,9 @@ class SpecGenerator
             if(@$orderDetail->project_data && in_array($product, array('canvastotebag','spunboundtotebag','spunbond_tote')) && @$options->qtySizeMap){
                 $spec['qtySizeMap'] = "Quantity: <br/>";
                 foreach($options->qtySizeMap as $key=>$val){
+                    if(!is_array($val)){
+                        $val = (array) $val;
+                    }
                     if($val['qty'] != 0){
                         $spec['qtySizeMap'] .= $val['color']." ".$val['size'].", ".$val['qty']."<br/>";
                     }
