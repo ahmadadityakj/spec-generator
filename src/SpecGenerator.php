@@ -398,8 +398,12 @@ class SpecGenerator
             if (@$options->finish) $spec['finish'] = "Finishing: ".$options->finish;
             if(@$options->finishing){
                 $spec['finishing'] = "";
-                foreach($options->finishing as $val){
-                    $spec['finishing'] .= $val. "<br/>";
+                if(is_array($options->finishing)){
+                    foreach($options->finishing as $val){
+                        $spec['finishing'] .= $val. "<br/>";
+                    }
+                }else{
+                    $spec['finishing'] .= $options->finishing;
                 }
             }
             if (@$options->speed) {
