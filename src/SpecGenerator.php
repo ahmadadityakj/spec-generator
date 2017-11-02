@@ -52,10 +52,20 @@ class SpecGenerator
             case "canvas":
                 $spec['title'] = "Canvas";
                 if(@$project_data->size) $spec['size'] = "Size: ".ucwords($project_data->size);
-                if(@$project_data->layout) $spec['layout'] = "Layout: ".ucwords($project_data->layout);
+                if(@$project_data->layout) $spec['layout'] = "Layout: ".$this->layoutImagePanorama($project_data->layout);
                 break;
         }
         return $spec;
+    }
+
+    private function layoutImagePanorama($layout){
+        $desc = "";
+        switch($layout){
+            case "layout1": $desc = "1x1 Image"; break;
+            case "layout2": $desc = "2x2 Image"; break;
+            case "layout3": $desc = "3x3 Image"; break;
+        }
+        return $desc;
     }
 
     private function generateShop($orderDetail,$sku){
@@ -623,7 +633,7 @@ class SpecGenerator
     }
 
     private function specFilter($spec){
-        $custSpec = '';
+        $custSpec = $spec;
         if (empty($spec)){
             $custSpec = '';
         } else if($spec == 'rollup60' || $spec == 'xbanner60') {
