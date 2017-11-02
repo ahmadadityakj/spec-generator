@@ -226,18 +226,20 @@ class SpecGenerator
         $spec = array();
         //business card & square card
         if (in_array($product, array('businesscard', 'squarecard'))) {
-            $spec['quantity'] = $options->quantity ?: 0;
-            if ($product == 'businesscard') {
-                $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Business Card");
-            } elseif ($product == 'squarecard') {
-                $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Square Card");
+            if(@$options->quantity){
+                $spec['quantity'] = $options->quantity;
+                if ($product == 'businesscard') {
+                    $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Business Card");
+                } elseif ($product == 'squarecard') {
+                    $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Square Card");
+                }
             }
             $spec['size'] = "Size: " . $options->size;
             $spec['sides'] = "Sides: " . $options->sides;
             if(@$orderDetail->project_data->properties->Kertas){
-                $spec['paper'] = "Papertype: " .$orderDetail->project_data->properties->Kertas;
+                $spec['paper'] = "Papertype: " .$this->paperType($orderDetail->project_data->properties->Kertas);
             }elseif(@$options->paper){
-                $spec['paper'] = "Papertype: " .$options->paper;
+                $spec['paper'] = "Papertype: " .$this->paperType($options->paper);
             }
             if ($product == 'businesscard') {
                 $spec['finishing'] = "Finishing: " . (@$options->finishing ? $options->finishing : "");
@@ -258,9 +260,9 @@ class SpecGenerator
             $spec['size'] = "Size: " . $options->size;
             $spec['sides'] = "Sides: " . $options->sides;
             if(@$orderDetail->project_data->properties->Kertas){
-                $spec['paper'] = "Papertype: " .$orderDetail->project_data->properties->Kertas;
+                $spec['paper'] = "Papertype: " .$this->paperType($orderDetail->project_data->properties->Kertas);
             }elseif(@$options->paper){
-                $spec['paper'] = "Papertype: " .$options->paper;
+                $spec['paper'] = "Papertype: " .$this->paperType($options->paper);
             }
             if (@$options->finish) {
                 if ($options->finish == 2) $spec['finish'] = "Folding: Bifold";
@@ -283,9 +285,9 @@ class SpecGenerator
                 if($options->size == 'desk') $spec['size'] = 'Side: 2 (sides)';
             }*/
             if(@$orderDetail->project_data->properties->Kertas){
-                $spec['paper'] = "Papertype: " .$orderDetail->project_data->properties->Kertas;
+                $spec['paper'] = "Papertype: " .$this->paperType($orderDetail->project_data->properties->Kertas);
             }elseif(@$options->paper){
-                $spec['paper'] = "Papertype: " .$options->paper;
+                $spec['paper'] = "Papertype: " .$this->paperType($options->paper);
             }
             $spec['laminate'] = "Lamination: " . (@$options->laminate ? $options->laminate : "");
             if (@$options->size) $spec['size'] = "Type: " . $options->size;
@@ -323,9 +325,9 @@ class SpecGenerator
             if (@$options->size) $spec['size'] = "Size: " . $options->size;
             if (@$options->sides) $spec['sides'] = "Sides: " . $options->sides;
             if(@$orderDetail->project_data->properties->Kertas){
-                $spec['paper'] = "Papertype: " .$orderDetail->project_data->properties->Kertas;
+                $spec['paper'] = "Papertype: " .$this->paperType($orderDetail->project_data->properties->Kertas);
             }elseif(@$options->paper){
-                $spec['paper'] = "Papertype: " .$options->paper;
+                $spec['paper'] = "Papertype: " .$this->paperType($options->paper);
             }
             if (@$options->speed) {
                 if (strpos($options->speed, 'fast') !== false) $spec['speed'] = "Speed: Fast";
@@ -408,9 +410,9 @@ class SpecGenerator
             if (@$options->sides) $spec['sides'] = "Sides: ".$this->specFilter($options->sides). " (".($options->sides == 2? "Two" : "One").")";
             if(@$options->paper){
                 if(@$orderDetail->project_data->properties->Kertas){
-                    $spec['paper'] = "Material: " . $orderDetail->project_data->properties->Kertas;
+                    $spec['paper'] = "Material: " . $this->paperType($orderDetail->project_data->properties->Kertas);
                 }else{
-                    $spec['paper'] = "Material: " . $options->paper;
+                    $spec['paper'] = "Material: " . $this->paperType($options->paper);
                 }
             }
             if (@$options->material) $spec['material'] = "Material: ".$options->material;
@@ -467,9 +469,9 @@ class SpecGenerator
             if (@$options->quantity) $spec['quantity'] = $options->quantity." x ".($orderDetail->project_data->display_name?:$orderDetail->project_data->prod);
             if(@$options->paper){
                 if(@$orderDetail->project_data->properties->Kertas){
-                    $spec['paper'] = "Material: " . $orderDetail->project_data->properties->Kertas;
+                    $spec['paper'] = "Material: " . $this->paperType($orderDetail->project_data->properties->Kertas);
                 }else{
-                    $spec['paper'] = "Material: " . $options->paper;
+                    $spec['paper'] = "Material: " . $this->paperType($options->paper);
                 }
             }
             if (@$options->material) $spec['material'] = "Material: ".$options->material;
@@ -550,6 +552,73 @@ class SpecGenerator
             $url = "http://".$url;
         }
         return $url;
+    }
+
+    private function paperType($paper){
+        $desc = $paper;
+        switch(strtolower($paper)){
+            case "ac260": $desc = 'Art Carton 260 gsm'; break;
+            case "ac310": $desc = 'Art Carton 310 gsm'; break;
+            case "cs240": $desc = 'Constellation Snow 240 gsm'; break;
+            case "s270": $desc = 'Splendorgel 270 gsm'; break;
+            case "esb216": $desc = 'Everyday smooth bright 216 gsm'; break;
+            case "mp150": $desc = 'Matte Paper 150 gsm'; break;
+            case "ap120": $desc = 'Art Paper 120 gsm'; break;
+            case "satin216": $desc = 'Digital Via Satin 216 gsm'; break;
+            case "mp120": $desc = 'Matte Paper 120 gsm'; break;
+            case "srat238": $desc = 'Strathmore Writing 238 gsm'; break;
+            case "everyday148": $desc = 'Everyday smooth bright 148 gsm'; break;
+            case "splendor160": $desc = 'Splendorgel Extra White 160 gsm'; break;
+            case "hvs100": $desc = 'HVS 100 gsm'; break;
+            case "via148": $desc = 'Via Linen bright white 104 gsm'; break;
+            case "ff440": $desc = 'FF Korea 440gr'; break;
+            case "ff340": $desc = 'FF China 340gr'; break;
+            case "sww238": $desc = 'ST WRITING WOVE (ultimate white] 238 gsm'; break;
+            case "dpro190": $desc = 'DIGITAL PROPHOTO (WHITE] 190 gsm'; break;
+            case "dpro260": $desc = 'DIGITAL PROPHOTO (WHITE] 260 gsm'; break;
+            case "corolla240": $desc = 'COROLLA PENTAGRAM 240 gsm'; break;
+            case "tinto250": $desc = 'TINTORETTO NEVE 250 gsm'; break;
+            case "ombianco250": $desc = 'OLD MILL BIANCO 250 gsm'; break;
+            case "acqbianco240": $desc = 'ACQUERELLO BIANCO 240 gsm'; break;
+            case "fpolardawn125": $desc = 'FANCY POLAR DAWN 125 gsm'; break;
+            case "fpolardawn300": $desc = 'FANCY POLAR DAWN 300 gsm'; break;
+            case "fmicegold120": $desc = 'FANCY METALIC ICE GOLD 120 gsm'; break;
+            case "fmicegold300": $desc = 'FANCY METALIC ICE GOLD 300 gsm'; break;
+            case "fusion200": $desc = 'FUSION 200 gsm'; break;
+            case "fusion300": $desc = 'FUSION 300 gsm'; break;
+            case "feggshell148": $desc = 'FANCY EGGSHEL 148 gsm'; break;
+            case "feggshell216": $desc = 'FANCY EGGSHEL 216 gsm'; break;
+            case "feggshell270": $desc = 'FANCY EGGSHEL (SUPERFINE] 270 gsm'; break;
+            case "vlinen104": $desc = 'VIA LINEN 104 gsm BRIGHT WHITE'; break;
+            case "vlinen216": $desc = 'VIA LINEN 216 gsm BRIGHT WHITE'; break;
+            case "vlinen298": $desc = 'VIA LINEN 298 gsm BRIGHT WHITE'; break;
+            case "vfelt118": $desc = 'VIA FELT 118 gsm BRIGHT WHITE'; break;
+            case "vfelt216": $desc = 'VIA FELT 216 gsm BRIGHT WHITE'; break;
+            case "vfelt298": $desc = 'VIA FELT 298 gsm BRIGHT WHITE'; break;
+            case "splendorgel160": $desc = 'SPLENDORGEL EXTRA WHITE 160 gsm'; break;
+            case "splendorgel230": $desc = 'SPLENDORGEL EXTRA WHITE 230 gsm'; break;
+            case "splendorgel270": $desc = 'SPLENDORGEL EXTRA WHITE 270 gsm'; break;
+            case "freelife130": $desc = 'SIMBOL FREELIFE RASTER 130 gsm'; break;
+            case "freelife250": $desc = 'SIMBOL FREELIFE RASTER 250 gsm'; break;
+            case "constelation170": $desc = 'CONSTELATION SNOW 170 gsm'; break;
+            case "constelation240": $desc = 'CONSTELATION SNOW 240 gsm'; break;
+            case "feveryday270": $desc = 'FANCY EVERYDAY VELLUM (WHITE] 270 gsm'; break;
+            case "vsatin148": $desc = 'VIA SATIN BRIGHT WHITE 148 gsm'; break;
+            case "vsatin216": $desc = 'VIA SATIN BRIGHT WHITE 216 gsm'; break;
+            case "esb148": $desc = 'EVERYDAY SMOOTH BRIGHT 148 gsm'; break;
+            case "esb270": $desc = 'EVERYDAY SMOOTH BRIGHT 270 gsm'; break;
+            case "ap150": $desc = 'ART PAPER 150 gsm'; break;
+            case "ac190": $desc = 'ART CARTON 190 gsm'; break;
+            case "ac210": $desc = 'ART CARTON 210 gsm'; break;
+            case "ff280": $desc = 'FF China 280 GSM'; break;
+            case "vsticker": $desc = 'Vinyl Sticker + Polyfoam'; break;
+            case "fe148": $desc = 'Fancy Eggshell 148 GSM'; break;
+            case "co170": $desc = 'Constellation Snow 170 GSM'; break;
+            case "sg230": $desc = 'Splendorgel 230 GSM'; break;
+            case "vf298": $desc = 'Via Felt 298 GSM'; break;
+            case "fe216": $desc = 'Fancy Eggshell 216 gsm'; break;
+        }
+        return $desc;
     }
 
     private function specFilter($spec){
