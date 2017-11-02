@@ -313,9 +313,8 @@ class SpecGenerator
                     } else {
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
-                        } else {
-                            $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
                         }
+                        $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
                     }
                     $idx++;
                 }
@@ -349,9 +348,8 @@ class SpecGenerator
                     } else {
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
-                        } else {
-                            $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
                         }
+                        $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
                     }
                     $idx++;
                 }
@@ -360,13 +358,13 @@ class SpecGenerator
 
         //tshirt,poloshirt
         if(in_array($product, array('tshirt','poloshirt'))) {
-            if (@$options->front) $spec['front'] = "Front: " . $options->front;
-            if (@$options->back) $spec['back'] = "Back: " . $options->back;
-            if (@$options->left) $spec['left'] = "Left Arm: " . $options->left;
-            if (@$options->right) $spec['right'] = "Right Arm: " . $options->right;
-            if (@$options->nlogo) $spec['nlogo'] = "Near Colar: " . $options->nlogo;
+            if (@$options->front) $spec['front'] = "Front: " . ucwords($options->front);
+            if (@$options->back) $spec['back'] = "Back: " . ucwords($options->back);
+            if (@$options->left) $spec['left'] = "Left Arm: " . ucwords($options->left);
+            if (@$options->right) $spec['right'] = "Right Arm: " . ucwords($options->right);
+            if (@$options->nlogo) $spec['nlogo'] = "Near Colar: " . ucwords($options->nlogo);
             if($product == 'poloshirt'){
-                if (@$options->color) $spec['color'] = "Color: " . $options->color;
+                if (@$options->color) $spec['color'] = "Color: " . ucwords($options->color);
             }
             if (@$options->speed) {
                 if (strpos($options->speed, 'sticker') !== false) $spec['speed'] = "Speed: Fast, Sticker";
@@ -379,7 +377,7 @@ class SpecGenerator
                         $val = (array) $val;
                     }
                     if($val['qty'] != 0){
-                        $spec['qtySizeMap'] .= (@$val['color']?:"")." ".(@$val['size']?$val['size'].",":"")." ".(@$val['qty']?:"")."<br/>";
+                        $spec['qtySizeMap'] .= (@$val['color']?ucwords($val['color']):"")." ".(@$val['size']?$val['size'].",":"")." ".(@$val['qty']?:"")."<br/>";
                     }
                 }
             }
@@ -392,9 +390,8 @@ class SpecGenerator
                     } else {
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
-                        } else {
-                            $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
                         }
+                        $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
                     }
                     $idx++;
                 }
@@ -450,9 +447,8 @@ class SpecGenerator
                     } else {
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
-                        } else {
-                            $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
                         }
+                        $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
                     }
                     $idx++;
                 }
@@ -498,9 +494,8 @@ class SpecGenerator
                     } else {
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
-                        } else {
-                            $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
                         }
+                        $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
                     }
                     $idx++;
                 }
