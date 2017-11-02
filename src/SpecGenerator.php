@@ -234,8 +234,8 @@ class SpecGenerator
                     $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Square Card");
                 }
             }
-            $spec['size'] = "Size: " . $options->size;
-            $spec['sides'] = "Sides: " . $options->sides;
+            if(@$options->size) $spec['size'] = "Size: " . $options->size;
+            if(@$options->sides) $spec['sides'] = "Sides: " . $options->sides;
             if(@$orderDetail->project_data->properties->Kertas){
                 $spec['paper'] = "Papertype: " .$this->paperType($orderDetail->project_data->properties->Kertas);
             }elseif(@$options->paper){
@@ -255,10 +255,12 @@ class SpecGenerator
 
         //brochure
         if (in_array($product, array('brochure'))) {
-            $spec['quantity'] = $options->quantity ?: 0;
-            $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Brochure");
-            $spec['size'] = "Size: " . $options->size;
-            $spec['sides'] = "Sides: " . $options->sides;
+            if(@$options->quantity){
+                $spec['quantity'] = $options->quantity;
+                $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Brochure");
+            }
+            if(@$options->size) $spec['size'] = "Size: " . $options->size;
+            if(@$options->sides) $spec['sides'] = "Sides: " . $options->sides;
             if(@$orderDetail->project_data->properties->Kertas){
                 $spec['paper'] = "Papertype: " .$this->paperType($orderDetail->project_data->properties->Kertas);
             }elseif(@$options->paper){
@@ -278,8 +280,10 @@ class SpecGenerator
 
         //calendar
         if (in_array($product, array('calendar'))) {
-            $spec['quantity'] = $options->quantity ?: 0;
-            $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Calendar");
+            if(@$options->quantity){
+                $spec['quantity'] = $options->quantity;
+                $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Calendar");
+            }
             /*if(@$options->size){
                 if($options->size == 'wall') $spec['size'] = 'Side: 1 (side)';
                 if($options->size == 'desk') $spec['size'] = 'Side: 2 (sides)';
@@ -320,8 +324,10 @@ class SpecGenerator
 
         //flyer,letterhead,poster,envelope
         if (in_array($product, array('flyer', 'letterhead', 'poster', 'envelope'))) {
-            $spec['quantity'] = $options->quantity ?: 0;
-            $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Calendar");
+            if(@$options->quantity){
+                $spec['quantity'] = $options->quantity;
+                $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Calendar");
+            }
             if (@$options->size) $spec['size'] = "Size: " . $options->size;
             if (@$options->sides) $spec['sides'] = "Sides: " . $options->sides;
             if(@$orderDetail->project_data->properties->Kertas){
