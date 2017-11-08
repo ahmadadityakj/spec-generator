@@ -72,6 +72,9 @@ class SpecGenerator
         $product = $this->getSkuType($orderDetail->sku_id);
         $project_data = $orderDetail->project_data;
         $spec = array();
+        if(@$project_data->material) $spec['type'] = "Material: ".$project_data->material;
+        if(@$project_data->size) $spec['size'] = "Size: ".$project_data->size;
+        if(@$project_data->sides) $spec['sides'] = "Sides: ".$project_data->sides;
         switch ($product) {
             case 'canvas_art':
                 if(@$sku->title) $spec['title'] = $sku->title;
@@ -94,7 +97,15 @@ class SpecGenerator
                 break;
             case 'frame_art':
                 if(@$sku->title) $spec['title'] = $sku->title;
-                if(@$project_data->type) $spec['frame'] = "Frame: ".$project_data->type;
+                $frametypes =  array(
+                    'black' => 'Solid Black',
+                    'white' => 'Solid White',
+                    'darkwood' => 'Dark Wood',
+                    'lightwood' => 'Light Wood',
+                    'classicblack' => 'Classic Black',
+                    'classicwhite' => 'Classic White'
+                );
+                if(@$project_data->type) $spec['frame'] = "Frame: ".@$frametypes[$project_data->type]?:"Unknown";
                 if(@$project_data->layout) $spec['layout'] = "Layout: ".$project_data->layout."%";
                 break;
             case 'gadget_case':
@@ -188,6 +199,9 @@ class SpecGenerator
     private function generateMoments($orderDetail){
         $project_data = $orderDetail->project_data;
         $spec = array();
+        if(@$project_data->material) $spec['type'] = "Material: ".$project_data->material;
+        if(@$project_data->size) $spec['size'] = "Size: ".$project_data->size;
+        if(@$project_data->sides) $spec['sides'] = "Sides: ".$project_data->sides;
         switch($project_data->type){
             case "canvas":
                 if(@$project_data->qty) $spec['display_name'] = $project_data->qty.' x Canvas';
