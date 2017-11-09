@@ -538,10 +538,10 @@ class SpecGenerator
                     foreach ($properties as $key => $val) {
                         if (is_array($val)) {
                             foreach ($val as $key2 => $val2) {
-                                $spec['properties'] .= $this->specFilter($key) . " : " . $this->specFilter($val2);
+                                $spec['properties'] .= $this->specFilter($key) . " : " . $this->specFilter($val2)."<br/>";
                             }
                         } else {
-                            $spec['properties'] .= $key . " : " . $this->specFilter($val);
+                            $spec['properties'] .= $this->specFilter($key) . " : " . $this->specFilter($val)."<br/>";
                         }
                     }
                 }else{
@@ -552,10 +552,10 @@ class SpecGenerator
                 foreach($options as $key=>$val){
                     if(is_array($val)){
                         foreach($val as $key2=>$val2){
-                            $spec['properties'].= $this->specFilter($key)." : ".$this->specFilter($val2);
+                            $spec['properties'].= $this->specFilter($key)." : ".$this->specFilter($val2)."<br/>";
                         }
                     }elseif(!in_array($key, array('pro_product_id','pro_product_title','quantity','prod'))){
-                        $spec['properties'].= $key." : ".$this->specFilter($val);
+                        $spec['properties'].= $this->specFilter($key)." : ".$this->specFilter($val)."<br/>";
                     }
                 }
             }
@@ -580,7 +580,7 @@ class SpecGenerator
     }
 
     private function paperType($paper){
-        $desc = $paper;
+        $desc = ucwords($paper);
         switch(strtolower($paper)){
             case "ac260": $desc = 'Art Carton 260 gsm'; break;
             case "ac310": $desc = 'Art Carton 310 gsm'; break;
@@ -647,7 +647,7 @@ class SpecGenerator
     }
 
     private function specFilter($spec){
-        $custSpec = $spec;
+        $custSpec = ucwords($spec);
         if (empty($spec)){
             $custSpec = '';
         } else if($spec == 'rollup60' || $spec == 'xbanner60') {
