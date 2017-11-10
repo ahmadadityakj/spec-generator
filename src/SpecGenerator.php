@@ -41,6 +41,11 @@ class SpecGenerator
                 $spec = $this->generateV3($orderDetail);
                 break;
         }
+
+        foreach($spec as $key=>$val){
+            $spec[$key] = ucwords($val);
+        }
+
         return $spec;
     }
 
@@ -234,10 +239,19 @@ class SpecGenerator
                 if(@$project_data->size) $spec['size'] = "Size: ".$project_data->size;
                 break;
             case "frameart":
-                if(@$project_data->size) $spec['size'] = "Size: ".$project_data->orientation;
+                if(@$project_data->size) $spec['size'] = "Size: ".$project_data->size;
                 if(@$project_data->orientation) $spec['orientation'] = "Orientation: ".$project_data->orientation;
                 if(@$project_data->frame) $spec['frame'] = "Frame: ".$project_data->frame;
-                if(@$project_data->layout) $spec['layout'] = "Layout: ".$project_data->layout;
+                if(@$project_data->layout) {
+                    if($project_data->layout == 'layout_1'){
+                        $layout = '100';
+                    }elseif($project_data->layout == 'layout_2'){
+                        $layout = '75';
+                    }else{
+                        $layout = '50';
+                    }
+                    $spec['layout'] = "Layout: ".$layout." %";
+                }
                 break;
         }
         return $spec;
