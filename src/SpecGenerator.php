@@ -440,11 +440,11 @@ class SpecGenerator
         if(in_array($product, array('banner','xbanner','rollupbanner','tripodbanner','eventbackwall','eventdesk','popuptable','popupstand','canvastotebag','spunboundtotebag','spunbond_tote','greetingcard','thankyoucard','voucher','stampcard','companyfolder','sticker','canvas_tote','loyaltycard'))){
             if($product == 'voucher'){
                 if (@$options->quantity) {
-                    $spec['quantity'] = $options->quantity." x ".($orderDetail->project_data->display_name?:$orderDetail->project_data->prod);
+                    $spec['quantity'] = $options->quantity." x ".(@$orderDetail->project_data->display_name?$orderDetail->project_data->display_name:$orderDetail->project_data->prod);
                     if(@$options->size && $options->size == '20x7') $spec['quantity'] .= "book (".$options->quantity." sheet)";
                 }
             }else{
-                if (@$options->quantity) $spec['quantity'] = $options->quantity." x ".($orderDetail->project_data->display_name?:$orderDetail->project_data->prod);
+                if (@$options->quantity) $spec['quantity'] = $options->quantity." x ".(@$orderDetail->project_data->display_name?$orderDetail->project_data->display_name:$orderDetail->project_data->prod);
             }
             if (@$options->printopt) $spec['printopt'] = "Option: ".$this->specFilter($options->printopt);
             if (@$options->size) $spec['size'] = "Size: ".$this->specFilter($options->size);
@@ -506,7 +506,7 @@ class SpecGenerator
 
         //spanduk
         if($product == "spanduk"){
-            if (@$options->quantity) $spec['quantity'] = $options->quantity." x ".($orderDetail->project_data->display_name?:$orderDetail->project_data->prod);
+            if (@$options->quantity) $spec['quantity'] = $options->quantity." x ".(@$orderDetail->project_data->display_name?$orderDetail->project_data->display_name:$orderDetail->project_data->prod);
             if(@$options->paper){
                 if(@$orderDetail->project_data->properties->Kertas){
                     $spec['paper'] = "Material: " . $this->paperType($orderDetail->project_data->properties->Kertas);
