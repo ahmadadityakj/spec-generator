@@ -335,7 +335,7 @@ class SpecGenerator
             if (@$options->size) $spec['size'] = "Type: " . $options->size;
             if (@$options->sheet) $spec['sheet'] = "Sheets: " . $options->sheet;
             if (@$options->format) $spec['format'] = "Format: " . $options->format;
-            //if(@$options->spiral) $spec['spiral'] = "Spiral Color: ".$options->spiral;
+            if (@$options->spiral) $spec['spiral'] = "Spiral Color: ".$this->specFilter($options->spiral);
             if (@$options->package) $spec['package'] = "Packaging: " . $options->package;
             if (@$options->speed) {
                 if (strpos($options->speed, 'fast') !== false) $spec['speed'] = "Speed: Fast";
