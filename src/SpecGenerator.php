@@ -332,7 +332,12 @@ class SpecGenerator
                 $spec['paper'] = "Papertype: " .$this->paperType($options->paper);
             }
             $spec['laminate'] = "Lamination: " . (@$options->laminate ? $options->laminate : "");
-            if (@$options->size) $spec['size'] = "Type: " . $options->size;
+            if (@$options->size) {
+                $spec['size'] = "Type: " . $options->size;
+                if($options->size == 'desk'){
+                    $spec['board'] = "Board : Board Local 40 + Linen Hitam";
+                }
+            }
             if (@$options->sheet) $spec['sheet'] = "Sheets: " . $options->sheet;
             if (@$options->format) $spec['format'] = "Format: " . $options->format;
             if (@$options->spiral) $spec['spiral'] = "Spiral Color: ".$this->specFilter($options->spiral);
