@@ -357,7 +357,7 @@ class SpecGenerator
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
                         }
-                        $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
+                        $spec['design_file'] .= "<a href='".$val."' target='_blank'>" . substr($val, 0, 29) . "</a><br/>";
                     }
                     $idx++;
                 }
@@ -392,7 +392,7 @@ class SpecGenerator
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
                         }
-                        $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
+                        $spec['design_file'] .= "<a href='".$val."' target='_blank'>" . substr($val, 0, 29) . "</a><br/>";
                     }
                     $idx++;
                 }
@@ -434,7 +434,7 @@ class SpecGenerator
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
                         }
-                        $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
+                        $spec['design_file'] .= "<a href='".$val."' target='_blank'>" . substr($val, 0, 29) . "</a><br/>";
                     }
                     $idx++;
                 }
@@ -491,7 +491,7 @@ class SpecGenerator
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
                         }
-                        $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
+                        $spec['design_file'] .= "<a href='".$val."' target='_blank'>" . substr($val, 0, 29) . "</a><br/>";
                     }
                     $idx++;
                 }
@@ -538,7 +538,7 @@ class SpecGenerator
                         if ($idx == 0) {
                             $spec['design_file'] .= "File sent: <br/>";
                         }
-                        $spec['design_file'] .= "<a>" . substr($val, 0, 29) . "</a><br/>";
+                        $spec['design_file'] .= "<a href='".$val."' target='_blank'>" . substr($val, 0, 29) . "</a><br/>";
                     }
                     $idx++;
                 }
