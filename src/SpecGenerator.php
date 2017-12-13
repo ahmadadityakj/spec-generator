@@ -368,7 +368,9 @@ class SpecGenerator
         if (in_array($product, array('flyer', 'letterhead', 'poster', 'envelope'))) {
             if(@$options->quantity){
                 $spec['quantity'] = $options->quantity;
-                $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Calendar");
+                if(@$orderDetail->project_data->display_name){
+                    $spec['quantity'] .= " x " . $orderDetail->project_data->display_name;
+                }
             }
             if (@$options->size) $spec['size'] = "Size: " . $options->size;
             if (@$options->sides) $spec['sides'] = "Sides: " . $options->sides;
