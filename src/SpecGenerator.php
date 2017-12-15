@@ -522,6 +522,17 @@ class SpecGenerator
                 }
             }
             if (@$options->material) $spec['material'] = "Material: ".$options->material;
+            if (@$options->size) $spec['size'] = "Size: ".$this->specFilter($options->size);
+            if(@$options->finishing){
+                $spec['finishing'] = "";
+                if(is_array($options->finishing)){
+                    foreach($options->finishing as $val){
+                        $spec['finishing'] .= $val. "<br/>";
+                    }
+                }else{
+                    $spec['finishing'] .= $options->finishing;
+                }
+            }
             if (@$options->width && $options->width > 0) $spec['width'] = "Width: ".$options->width. " cm";
             if (@$options->height && $options->height > 0) $spec['height'] = "Height: ".$options->height. " cm";
             if (@$options->size_index && $options->size_index != 'custom') $spec['size_index'] = "Size Index: ".$options->size_index. " cm";
