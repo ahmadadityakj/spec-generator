@@ -280,9 +280,9 @@ class SpecGenerator
                 $spec['paper'] = "Papertype: " .$this->paperType($options->paper);
             }
             if ($product == 'businesscard') {
-                $spec['finishing'] = "Finishing: " . (@$options->finishing ? $options->finishing : "");
-                $spec['finish'] = "Cornertype: " . (@$options->finish ? $options->finish : "");
-                $spec['laminate'] = "Lamination: " . (@$options->laminate ? $options->laminate : "");
+                $spec['finishing'] = "Finishing: " . (@$options->finishing ? $options->finishing : "None");
+                $spec['finish'] = "Cornertype: " . (@$options->finish ? $options->finish : "None");
+                $spec['laminate'] = "Lamination: " . (@$options->laminate ? $options->laminate : "None");
             }
             if (@$options->speed) {
                 if (strpos($options->speed, 'fast') !== false) $spec['speed'] = "Speed: Fast";
