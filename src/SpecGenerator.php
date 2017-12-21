@@ -408,9 +408,15 @@ class SpecGenerator
             if (@$options->left) $spec['left'] = "Left Arm: " . ucwords($options->left);
             if (@$options->right) $spec['right'] = "Right Arm: " . ucwords($options->right);
             if (@$options->nlogo) $spec['nlogo'] = "Near Colar: " . ucwords($options->nlogo);
-            if($product == 'poloshirt'){
+            /*if($product == 'poloshirt'){
                 if (@$options->color) $spec['color'] = "Color: " . ucwords($options->color);
-            }
+            }*/
+            if (@$options->material) $spec['material'] = "Material: " . ucwords($options->material);
+            if (@$options->finishing) $spec['finishing'] = "Finishing: " . ucwords($options->finishing);
+            if (@$options->sides) $spec['sides'] = "Sides: " . ucwords($options->sides);
+            if (@$options->size) $spec['size'] = "Size: " . ucwords($options->size);
+            if (@$options->color) $spec['color'] = "Color: " . ucwords($options->color);
+
             if (@$options->speed) {
                 if (strpos($options->speed, 'sticker') !== false) $spec['speed'] = "Speed: Fast, Sticker";
                 if (strpos($options->speed, 'sablon') !== false) $spec['speed'] = "Speed: Standar, Sablon";
