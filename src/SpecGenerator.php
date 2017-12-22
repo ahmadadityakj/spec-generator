@@ -576,6 +576,13 @@ class SpecGenerator
             if (@$options->size_sleeve) $spec['size_sleeve'] = "Size Sleeve: ".$options->size_sleeve;
         }
 
+        if($product == 'lanyard'){
+            if (@$options->sides) $spec['sides'] = "Sides: ".$options->sides;
+            if (@$options->material) $spec['material'] = "Material: ".$options->material;
+            if (@$options->finishing) $spec['finishing'] = "Finishing: ".$options->finishing;
+            if (@$options->size) $spec['size'] = "Size: ".$options->size;
+        }
+
         //others
         if(!in_array($product, array('spanduk','banner','xbanner','rollupbanner','tripodbanner','eventbackwall','eventdesk','popuptable','popupstand','canvastotebag','spunboundtotebag','spunbond_tote','greetingcard','thankyoucard','voucher','stampcard','companyfolder','sticker','canvas_tote','loyaltycard','tshirt','poloshirt','flyer','letterhead','poster','envelope','calendar','brochure','businesscard','squarecard'))){
             if (@$product) $spec['prod'] = "Product: ".$this->specFilter($product);
