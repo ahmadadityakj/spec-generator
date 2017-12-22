@@ -564,6 +564,18 @@ class SpecGenerator
             }
         }
 
+        if($product == 'packagingbox'){
+            if (@$options->sides) $spec['sides'] = "Sides: ".$options->sides;
+            if (@$options->material) $spec['material'] = "Material: ".$options->material;
+            if (@$options->finishing) $spec['finishing'] = "Finishing: ".$options->finishing;
+            if (@$options->laminate) $spec['laminate'] = "Lamination: ".$options->laminate;
+            if (@$options->size) $spec['size'] = "Size: ".$options->size;
+            if (@$options->sides_sleeve) $spec['sides_sleeve'] = "Sides Sleeve: ".$options->sides_sleeve;
+            if (@$options->material_sleeve) $spec['material_sleeve'] = "Material Sleeve: ".$options->material_sleeve;
+            if (@$options->finishing_sleeve) $spec['finishing_sleeve'] = "Finishing Sleeve: ".$options->finishing_sleeve;
+            if (@$options->size_sleeve) $spec['size_sleeve'] = "Size Sleeve: ".$options->size_sleeve;
+        }
+
         //others
         if(!in_array($product, array('spanduk','banner','xbanner','rollupbanner','tripodbanner','eventbackwall','eventdesk','popuptable','popupstand','canvastotebag','spunboundtotebag','spunbond_tote','greetingcard','thankyoucard','voucher','stampcard','companyfolder','sticker','canvas_tote','loyaltycard','tshirt','poloshirt','flyer','letterhead','poster','envelope','calendar','brochure','businesscard','squarecard'))){
             if (@$product) $spec['prod'] = "Product: ".$this->specFilter($product);
