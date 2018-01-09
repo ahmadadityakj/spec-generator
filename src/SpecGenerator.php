@@ -55,9 +55,9 @@ class SpecGenerator
         $spec = array();
         switch($product){
             case "canvas":
-                $spec['title'] = "Canvas";
-                if(@$project_data->size) $spec['size'] = "Size: ".ucwords($project_data->size);
-                if(@$project_data->layout) $spec['layout'] = "Layout: ".$this->layoutImagePanorama($project_data->layout);
+                $spec['Title'] = "Canvas";
+                if(@$project_data->size) $spec['Size'] = ucwords($project_data->size);
+                if(@$project_data->layout) $spec['Layout'] = $this->layoutImagePanorama($project_data->layout);
                 break;
         }
         return $spec;
@@ -77,31 +77,31 @@ class SpecGenerator
         $product = $this->getSkuType($orderDetail->sku_id);
         $project_data = $orderDetail->project_data;
         $spec = array();
-        if(@$project_data->material) $spec['type'] = "Material: ".$project_data->material;
-        if(@$project_data->size) $spec['size'] = "Size: ".$project_data->size;
-        if(@$project_data->sides) $spec['sides'] = "Sides: ".$project_data->sides;
+        if(@$project_data->material) $spec['Material'] = $project_data->material;
+        if(@$project_data->size) $spec['Size'] = $project_data->size;
+        if(@$project_data->sides) $spec['Sides'] = $project_data->sides;
         switch ($product) {
             case 'canvas_art':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 break;
             case 'poster':
-                if(@$sku->title) $spec['title'] = "Poster ".$sku->title;
+                if(@$sku->title) $spec['Title'] = "Poster ".$sku->title;
                 break;
             case 'tshirt':
-                if(@$sku->title) $spec['title'] = $sku->title;
-                if(@$project_data->colorName) $spec['color'] = "Color: ".ucwords($project_data->colorName);
-                if(@$project_data->size) $spec['size'] = "Size: ".ucwords($project_data->size);
+                if(@$sku->title) $spec['Title'] = $sku->title;
+                if(@$project_data->colorName) $spec['Color'] = ucwords($project_data->colorName);
+                if(@$project_data->size) $spec['Size'] = ucwords($project_data->size);
                 break;
             case 'notebook_a5':
-                if(@$sku->title) $spec['title'] = $sku->title;
-                if(@$project_data->paper) $spec['paper'] = "Paper: ".ucwords($project_data->paper);
+                if(@$sku->title) $spec['Title'] = $sku->title;
+                if(@$project_data->paper) $spec['Paper'] = ucwords($project_data->paper);
                 break;
             case 'notebook_pocket':
-                if(@$sku->title) $spec['title'] = $sku->title;
-                if(@$project_data->paper) $spec['paper'] = "Paper: ".ucwords($project_data->paper);
+                if(@$sku->title) $spec['Title'] = $sku->title;
+                if(@$project_data->paper) $spec['Paper'] = ucwords($project_data->paper);
                 break;
             case 'frame_art':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 $frametypes =  array(
                     'black' => 'Solid Black',
                     'white' => 'Solid White',
@@ -110,38 +110,38 @@ class SpecGenerator
                     'classicblack' => 'Classic Black',
                     'classicwhite' => 'Classic White'
                 );
-                if(@$project_data->type) $spec['frame'] = "Frame: ".@$frametypes[$project_data->type]?:"Unknown";
-                if(@$project_data->layout) $spec['layout'] = "Layout: ".$project_data->layout."%";
+                if(@$project_data->type) $spec['Frame'] = @$frametypes[$project_data->type]?:"Unknown";
+                if(@$project_data->layout) $spec['Layout'] = $project_data->layout."%";
                 break;
             case 'gadget_case':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 break;
             case 'greetingcards':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 break;
             case 'postcards':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 break;
             case 'magnets':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 break;
             case 'pillow':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 break;
             case 'totebag':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 break;
             case 'laptop_skins':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 break;
             case 'mug':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 break;
             case 'tumblr':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 break;
             case 'scarf':
-                if(@$sku->title) $spec['title'] = $sku->title;
+                if(@$sku->title) $spec['Title'] = $sku->title;
                 break;
         }
         return $spec;
@@ -204,44 +204,44 @@ class SpecGenerator
     private function generateMoments($orderDetail){
         $project_data = $orderDetail->project_data;
         $spec = array();
-        if(@$project_data->material) $spec['type'] = "Material: ".$project_data->material;
-        if(@$project_data->size) $spec['size'] = "Size: ".$project_data->size;
-        if(@$project_data->sides) $spec['sides'] = "Sides: ".$project_data->sides;
+        if(@$project_data->material) $spec['Material'] = $project_data->material;
+        if(@$project_data->size) $spec['Size'] = $project_data->size;
+        if(@$project_data->sides) $spec['Sides'] = $project_data->sides;
         switch($project_data->type){
             case "canvas":
-                if(@$project_data->qty) $spec['display_name'] = $project_data->qty.' x Canvas';
-                if(@$project_data->canvas_type) $spec['type'] = "Material: ".$project_data->canvas_type;
-                if(@$project_data->orientation) $spec['orientation'] = "Orientation: ".$project_data->orientation;
-                if(@$project_data->size) $spec['size'] = "Size: ".$project_data->size;
-                if(@$project_data->spine) $spec['spine'] = "Spine: ".$project_data->spine;
+                if(@$project_data->qty) $spec['Display Name'] = $project_data->qty.' x Canvas';
+                if(@$project_data->canvas_type) $spec['Type'] = $project_data->canvas_type;
+                if(@$project_data->orientation) $spec['Orientation'] = $project_data->orientation;
+                if(@$project_data->size) $spec['Size'] = $project_data->size;
+                if(@$project_data->spine) $spec['Spine'] = $project_data->spine;
                 break;
             case "totebag":
-                $spec['display_name'] = "1 x Tote Bag";
-                if(@$project_data->size) $spec['size'] = "Size: ".$project_data->size;
+                $spec['Display Name'] = "1 x Tote Bag";
+                if(@$project_data->size) $spec['Size'] = $project_data->size;
                 break;
             case "magnet":
-                if(@$project_data->size) $spec['size'] = "Quantity: ".$project_data->size;
-                if(@$project_data->shape) $spec['shape'] = "Shape: ".$project_data->shape;
+                if(@$project_data->size) $spec['Quantity'] = $project_data->size;
+                if(@$project_data->shape) $spec['Shape'] = $project_data->shape;
                 break;
             case "pillow":
-                if(@$project_data->size) $spec['size'] = "Size: ".$project_data->size;
-                if(@$project_data->insert) $spec['insert'] = "Insert: ".($project_data->insert === true ? "With Insert":"Without Insert");
+                if(@$project_data->size) $spec['Size'] = $project_data->size;
+                if(@$project_data->insert) $spec['Insert'] = ($project_data->insert === true ? "With Insert":"Without Insert");
                 break;
             case "photoprint":
-                if(@$project_data->size) $spec['size'] = "Quantity: ".$project_data->size;
-                if(@$project_data->cover) $spec['cover'] = "Cover: ".$project_data->cover;
-                if(@$project_data->useWood) $spec['useWood'] = ($project_data->useWood === true ? "With Wood Block & Box":"Without Wood Block & Box");
+                if(@$project_data->size) $spec['Quantity'] = $project_data->size;
+                if(@$project_data->cover) $spec['Cover'] = $project_data->cover;
+                if(@$project_data->useWood) $spec['Use Wood & Box'] = ($project_data->useWood === true ? "With Wood Block & Box":"Without Wood Block & Box");
                 break;
             case "photobook":
-                if(@$project_data->paper_type) $spec['paper_type'] = "Paper: ".$project_data->paper_type;
+                if(@$project_data->paper_type) $spec['Paper'] = $project_data->paper_type;
                 break;
             case "gadget":
-                if(@$project_data->size) $spec['size'] = "Size: ".$project_data->size;
+                if(@$project_data->size) $spec['Size'] = $project_data->size;
                 break;
             case "frameart":
-                if(@$project_data->size) $spec['size'] = "Size: ".$project_data->size;
-                if(@$project_data->orientation) $spec['orientation'] = "Orientation: ".$project_data->orientation;
-                if(@$project_data->frame) $spec['frame'] = "Frame: ".$project_data->frame;
+                if(@$project_data->size) $spec['Size'] = $project_data->size;
+                if(@$project_data->orientation) $spec['Orientation'] = $project_data->orientation;
+                if(@$project_data->frame) $spec['Frame'] = $project_data->frame;
                 if(@$project_data->layout) {
                     if($project_data->layout == 'layout_1'){
                         $layout = '100';
@@ -250,7 +250,7 @@ class SpecGenerator
                     }else{
                         $layout = '50';
                     }
-                    $spec['layout'] = "Layout: ".$layout." %";
+                    $spec['Layout'] = $layout." %";
                 }
                 break;
         }
@@ -265,89 +265,89 @@ class SpecGenerator
         //business card & square card
         if (in_array($product, array('businesscard', 'squarecard'))) {
             if(@$options->quantity){
-                $spec['quantity'] = $options->quantity;
+                $spec['Quantity'] = $options->quantity;
                 if ($product == 'businesscard') {
-                    $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Business Card");
+                    $spec['Quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Business Card");
                 } elseif ($product == 'squarecard') {
-                    $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Square Card");
+                    $spec['Quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Square Card");
                 }
             }
-            if(@$options->size) $spec['size'] = "Size: " . $options->size;
-            if(@$options->sides) $spec['sides'] = "Sides: " . $options->sides;
+            if(@$options->size) $spec['Size'] = $options->size;
+            if(@$options->sides) $spec['Sides'] = $options->sides;
             if(@$orderDetail->project_data->properties->Kertas){
-                $spec['paper'] = "Papertype: " .$this->paperType($orderDetail->project_data->properties->Kertas);
+                $spec['Paper'] = $this->paperType($orderDetail->project_data->properties->Kertas);
             }elseif(@$options->paper){
-                $spec['paper'] = "Papertype: " .$this->paperType($options->paper);
+                $spec['Paper'] = $this->paperType($options->paper);
             }
             if ($product == 'businesscard') {
-                $spec['finishing'] = "Finishing: " . (@$options->finishing ? $options->finishing : "None");
-                $spec['finish'] = "Cornertype: " . (@$options->finish ? $options->finish : "None");
-                $spec['laminate'] = "Lamination: " . (@$options->laminate ? $options->laminate : "None");
+                $spec['Finishing'] = (@$options->finishing ? $options->finishing : "None");
+                $spec['Corner Type'] = (@$options->finish ? $options->finish : "None");
+                $spec['Lamination'] = (@$options->laminate ? $options->laminate : "None");
             }
             if (@$options->speed) {
-                if (strpos($options->speed, 'fast') !== false) $spec['speed'] = "Speed: Fast";
-                if (strpos($options->speed, 'same') !== false) $spec['speed'] = "Speed: Same Day";
-                if (strpos($options->speed, 'standar') !== false) $spec['speed'] = "Speed: Standar";
+                if (strpos($options->speed, 'fast') !== false) $spec['Speed'] = "Fast";
+                if (strpos($options->speed, 'same') !== false) $spec['Speed'] = "Same Day";
+                if (strpos($options->speed, 'standar') !== false) $spec['Speed'] = "Standar";
             }
         }
 
         //brochure
         if (in_array($product, array('brochure'))) {
             if(@$options->quantity){
-                $spec['quantity'] = $options->quantity;
-                $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Brochure");
+                $spec['Quantity'] = $options->quantity;
+                $spec['Quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Brochure");
             }
-            if(@$options->size) $spec['size'] = "Size: " . $options->size;
-            if(@$options->sides) $spec['sides'] = "Sides: " . $options->sides;
+            if(@$options->size) $spec['Size'] = $options->size;
+            if(@$options->sides) $spec['Sides'] = $options->sides;
             if(@$orderDetail->project_data->properties->Kertas){
-                $spec['paper'] = "Papertype: " .$this->paperType($orderDetail->project_data->properties->Kertas);
+                $spec['Paper'] = $this->paperType($orderDetail->project_data->properties->Kertas);
             }elseif(@$options->paper){
-                $spec['paper'] = "Papertype: " .$this->paperType($options->paper);
+                $spec['Paper'] = $this->paperType($options->paper);
             }
             if (@$options->finish) {
-                if ($options->finish == 2) $spec['finish'] = "Folding: Bifold";
-                if ($options->finish == 'z_fold') $spec['finish'] = "Folding: Trifold - Z fold";
-                if ($options->finish == 'u_fold') $spec['finish'] = "Folding: Trifold - U fold";
+                if ($options->finish == 2) $spec['Folding'] = "Bifold";
+                if ($options->finish == 'z_fold') $spec['Folding'] = "Trifold - Z fold";
+                if ($options->finish == 'u_fold') $spec['Folding'] = "Trifold - U fold";
             }
             if (@$options->speed) {
-                if (strpos($options->speed, 'fast') !== false) $spec['speed'] = "Speed: Fast";
-                if (strpos($options->speed, 'same') !== false) $spec['speed'] = "Speed: Same Day";
-                if (strpos($options->speed, 'standar') !== false) $spec['speed'] = "Speed: Standar";
+                if (strpos($options->speed, 'fast') !== false) $spec['Speed'] = "Fast";
+                if (strpos($options->speed, 'same') !== false) $spec['Speed'] = "Same Day";
+                if (strpos($options->speed, 'standar') !== false) $spec['Speed'] = "Standar";
             }
         }
 
         //calendar
         if (in_array($product, array('calendar'))) {
             if(@$options->quantity){
-                $spec['quantity'] = $options->quantity;
-                $spec['quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Calendar");
+                $spec['Quantity'] = $options->quantity;
+                $spec['Quantity'] .= " x " . (@$orderDetail->project_data->display_name ? $orderDetail->project_data->display_name : "Calendar");
             }
             /*if(@$options->size){
                 if($options->size == 'wall') $spec['size'] = 'Side: 1 (side)';
                 if($options->size == 'desk') $spec['size'] = 'Side: 2 (sides)';
             }*/
             if(@$orderDetail->project_data->properties->Kertas){
-                $spec['paper'] = "Papertype: " .$this->paperType($orderDetail->project_data->properties->Kertas);
+                $spec['Paper'] = $this->paperType($orderDetail->project_data->properties->Kertas);
             }elseif(@$options->paper){
-                $spec['paper'] = "Papertype: " .$this->paperType($options->paper);
+                $spec['Paper'] = $this->paperType($options->paper);
             }
-            $spec['laminate'] = "Lamination: " . (@$options->laminate ? $options->laminate : "");
+            $spec['Lamination'] = (@$options->laminate ? $options->laminate : "");
             if (@$options->size) {
-                $spec['size'] = "Type: " . $options->size;
+                $spec['Type'] = $options->size;
                 if($options->size == 'desk'){
-                    $spec['board'] = "Board : Board Local 40 + Linen Hitam";
+                    $spec['Board'] = "Board Local 40 + Linen Hitam";
                 }
             }
-            if (@$options->sheet) $spec['sheet'] = "Sheets: " . $options->sheet;
-            if (@$options->format) $spec['format'] = "Format: " . $options->format;
-            if (@$options->spiral) $spec['spiral'] = "Spiral Color: ".$this->specFilter($options->spiral);
-            if (@$options->package) $spec['package'] = "Packaging: " . $options->package;
+            if (@$options->sheet) $spec['Sheets'] = $options->sheet;
+            if (@$options->format) $spec['Format'] = $options->format;
+            if (@$options->spiral) $spec['Spiral Color'] = $this->specFilter($options->spiral);
+            if (@$options->package) $spec['Packaging'] = $options->package;
             if (@$options->speed) {
-                if (strpos($options->speed, 'fast') !== false) $spec['speed'] = "Speed: Fast";
-                if (strpos($options->speed, 'same') !== false) $spec['speed'] = "Speed: Same Day";
-                if (strpos($options->speed, 'standar') !== false) $spec['speed'] = "Speed: Standar";
+                if (strpos($options->speed, 'fast') !== false) $spec['Speed'] = "Fast";
+                if (strpos($options->speed, 'same') !== false) $spec['Speed'] = "Same Day";
+                if (strpos($options->speed, 'standar') !== false) $spec['Speed'] = "Standar";
             }
-            if (@$orderDetail->project_data->design_file) {
+            /*if (@$orderDetail->project_data->design_file) {
                 $idx = 0;
                 $spec['design_file'] = "";
                 foreach ($orderDetail->project_data->design_file as $key => $val) {
@@ -361,30 +361,30 @@ class SpecGenerator
                     }
                     $idx++;
                 }
-            }
+            }*/
         }
 
         //flyer,letterhead,poster,envelope
         if (in_array($product, array('flyer', 'letterhead', 'poster', 'envelope'))) {
             if(@$options->quantity){
-                $spec['quantity'] = $options->quantity;
+                $spec['Quantity'] = $options->quantity;
                 if(@$orderDetail->project_data->display_name){
-                    $spec['quantity'] .= " x " . $orderDetail->project_data->display_name;
+                    $spec['Quantity'] .= " x " . $orderDetail->project_data->display_name;
                 }
             }
-            if (@$options->size) $spec['size'] = "Size: " . $options->size;
-            if (@$options->sides) $spec['sides'] = "Sides: " . $options->sides;
+            if (@$options->size) $spec['Size'] = $options->size;
+            if (@$options->sides) $spec['Sides'] = $options->sides;
             if(@$orderDetail->project_data->properties->Kertas){
-                $spec['paper'] = "Papertype: " .$this->paperType($orderDetail->project_data->properties->Kertas);
+                $spec['Paper'] = $this->paperType($orderDetail->project_data->properties->Kertas);
             }elseif(@$options->paper){
-                $spec['paper'] = "Papertype: " .$this->paperType($options->paper);
+                $spec['Paper'] = $this->paperType($options->paper);
             }
             if (@$options->speed) {
-                if (strpos($options->speed, 'fast') !== false) $spec['speed'] = "Speed: Fast";
-                if (strpos($options->speed, 'same') !== false) $spec['speed'] = "Speed: Same Day";
-                if (strpos($options->speed, 'standar') !== false) $spec['speed'] = "Speed: Standar";
+                if (strpos($options->speed, 'fast') !== false) $spec['Speed'] = "Fast";
+                if (strpos($options->speed, 'same') !== false) $spec['Speed'] = "Same Day";
+                if (strpos($options->speed, 'standar') !== false) $spec['Speed'] = "Standar";
             }
-            if (@$orderDetail->project_data->design_file) {
+            /*if (@$orderDetail->project_data->design_file) {
                 $idx = 0;
                 $spec['design_file'] = "";
                 foreach ($orderDetail->project_data->design_file as $key => $val) {
@@ -398,41 +398,41 @@ class SpecGenerator
                     }
                     $idx++;
                 }
-            }
+            }*/
         }
 
         //tshirt,poloshirt
         if(in_array($product, array('tshirt','poloshirt'))) {
-            if (@$options->front) $spec['front'] = "Front: " . ucwords($options->front);
-            if (@$options->back) $spec['back'] = "Back: " . ucwords($options->back);
-            if (@$options->left) $spec['left'] = "Left Arm: " . ucwords($options->left);
-            if (@$options->right) $spec['right'] = "Right Arm: " . ucwords($options->right);
-            if (@$options->nlogo) $spec['nlogo'] = "Near Colar: " . ucwords($options->nlogo);
+            if (@$options->front) $spec['Front'] = ucwords($options->front);
+            if (@$options->back) $spec['Back'] = ucwords($options->back);
+            if (@$options->left) $spec['Left Arm'] = ucwords($options->left);
+            if (@$options->right) $spec['Right Arm'] = ucwords($options->right);
+            if (@$options->nlogo) $spec['Near Colar'] = ucwords($options->nlogo);
             /*if($product == 'poloshirt'){
                 if (@$options->color) $spec['color'] = "Color: " . ucwords($options->color);
             }*/
-            if (@$options->material) $spec['material'] = "Material: " . ucwords($options->material);
-            if (@$options->finishing) $spec['finishing'] = "Finishing: " . ucwords($options->finishing);
-            if (@$options->sides) $spec['sides'] = "Sides: " . ucwords($options->sides);
-            if (@$options->size) $spec['size'] = "Size: " . ucwords($options->size);
-            if (@$options->color) $spec['color'] = "Color: " . ucwords($options->color);
+            if (@$options->material) $spec['Material'] = ucwords($options->material);
+            if (@$options->finishing) $spec['Finishing'] = ucwords($options->finishing);
+            if (@$options->sides) $spec['Sides'] = ucwords($options->sides);
+            if (@$options->size) $spec['Size'] = ucwords($options->size);
+            if (@$options->color) $spec['Color'] = ucwords($options->color);
 
             if (@$options->speed) {
-                if (strpos($options->speed, 'sticker') !== false) $spec['speed'] = "Speed: Fast, Sticker";
-                if (strpos($options->speed, 'sablon') !== false) $spec['speed'] = "Speed: Standar, Sablon";
+                if (strpos($options->speed, 'sticker') !== false) $spec['Speed'] = "Fast, Sticker";
+                if (strpos($options->speed, 'sablon') !== false) $spec['Speed'] = "Standar, Sablon";
             }
             if (@$options->qtySizeMap){
-                $spec['qtySizeMap'] = "Quantity: <br/>";
+                $spec['Quantity Size Map'] = "";
                 foreach($options->qtySizeMap as $key=>$val){
                     if(!is_array($val)){
                         $val = (array) $val;
                     }
                     if($val['qty'] != 0){
-                        $spec['qtySizeMap'] .= (@$val['color']?ucwords($val['color']):"")." ".(@$val['size']?$val['size'].",":"")." ".(@$val['qty']?:"")."<br/>";
+                        $spec['Quantity Size Map'] .= (@$val['color']?ucwords($val['color']):"")." ".(@$val['size']?$val['size'].",":"")." ".(@$val['qty']?:"")."<br/>";
                     }
                 }
             }
-            if (@$orderDetail->project_data->design_file) {
+            /*if (@$orderDetail->project_data->design_file) {
                 $idx = 0;
                 $spec['design_file'] = "";
                 foreach ($orderDetail->project_data->design_file as $key => $val) {
@@ -446,50 +446,50 @@ class SpecGenerator
                     }
                     $idx++;
                 }
-            }
+            }*/
         }
 
         //banner,xbanner,rollupbanner,tripodbanner,eventbackwall,eventdesk,popuptable,popupstand,canvastotebag,spunboundtotebag,spunbond_tote,greetingcard,thankyoucard,voucher,stampcard,companyfolder,sticker,canvas_tote,loyaltycard
         if(in_array($product, array('banner','xbanner','rollupbanner','tripodbanner','eventbackwall','eventdesk','popuptable','popupstand','canvastotebag','spunboundtotebag','spunbond_tote','greetingcard','thankyoucard','voucher','stampcard','companyfolder','sticker','canvas_tote','loyaltycard'))){
             if($product == 'voucher'){
                 if (@$options->quantity) {
-                    $spec['quantity'] = $options->quantity." x ".(@$orderDetail->project_data->display_name?$orderDetail->project_data->display_name:$orderDetail->project_data->prod);
-                    if(@$options->size && $options->size == '20x7') $spec['quantity'] .= "book (".$options->quantity." sheet)";
+                    $spec['Quantity'] = $options->quantity." x ".(@$orderDetail->project_data->display_name?$orderDetail->project_data->display_name:$orderDetail->project_data->prod);
+                    if(@$options->size && $options->size == '20x7') $spec['Quantity'] .= "book (".$options->quantity." sheet)";
                 }
             }else{
-                if (@$options->quantity) $spec['quantity'] = $options->quantity." x ".(@$orderDetail->project_data->display_name?$orderDetail->project_data->display_name:$orderDetail->project_data->prod);
+                if (@$options->quantity) $spec['Quantity'] = $options->quantity." x ".(@$orderDetail->project_data->display_name?$orderDetail->project_data->display_name:$orderDetail->project_data->prod);
             }
-            if (@$options->printopt) $spec['printopt'] = "Option: ".$this->specFilter($options->printopt);
-            if (@$options->size) $spec['size'] = "Size: ".$this->specFilter($options->size);
-            if (@$options->sides) $spec['sides'] = "Sides: ".$this->specFilter($options->sides). " (".($options->sides == 2? "Two" : "One").")";
+            if (@$options->printopt) $spec['Option'] = $this->specFilter($options->printopt);
+            if (@$options->size) $spec['Size'] = $this->specFilter($options->size);
+            if (@$options->sides) $spec['Sides'] = $this->specFilter($options->sides). " (".($options->sides == 2? "Two" : "One").")";
             if(@$options->paper){
                 if(@$orderDetail->project_data->properties->Kertas){
-                    $spec['paper'] = "Material: " . $this->paperType($orderDetail->project_data->properties->Kertas);
+                    $spec['Paper'] = $this->paperType($orderDetail->project_data->properties->Kertas);
                 }else{
-                    $spec['paper'] = "Material: " . $this->paperType($options->paper);
+                    $spec['Paper'] = $this->paperType($options->paper);
                 }
             }
-            if (@$options->material) $spec['material'] = "Material: ".$options->material;
-            if (@$options->shape) $spec['shape'] = "Shape: ".$this->specFilter($options->shape);
-            if (@$options->flap) $spec['flap'] = "Flap: ".$this->specFilter($options->flap);
-            if (@$options->laminate && $options->laminate != 'none') $spec['laminate'] = "Laminasi: ".$options->laminate;
-            if (@$options->finish) $spec['finish'] = "Finishing: ".$options->finish;
+            if (@$options->material) $spec['Material'] = $options->material;
+            if (@$options->shape) $spec['Shape'] = $this->specFilter($options->shape);
+            if (@$options->flap) $spec['Flap'] = $this->specFilter($options->flap);
+            if (@$options->laminate && $options->laminate != 'none') $spec['Lamination'] = $options->laminate;
+            if (@$options->finish) $spec['Finish'] = $options->finish;
             if(@$options->finishing){
-                $spec['finishing'] = "";
+                $spec['Finishing'] = "";
                 if(is_array($options->finishing)){
                     foreach($options->finishing as $val){
-                        $spec['finishing'] .= $val. "<br/>";
+                        $spec['Finishing'] .= $val. "<br/>";
                     }
                 }else{
-                    $spec['finishing'] .= $options->finishing;
+                    $spec['Finishing'] .= $options->finishing;
                 }
             }
             if (@$options->speed) {
-                if (strpos($options->speed, 'fast') !== false) $spec['speed'] = "Speed: Fast";
-                if (strpos($options->speed, 'same') !== false) $spec['speed'] = "Speed: Same Day";
-                if (strpos($options->speed, 'standar') !== false) $spec['speed'] = "Speed: Standar";
+                if (strpos($options->speed, 'fast') !== false) $spec['Speed'] = "Fast";
+                if (strpos($options->speed, 'same') !== false) $spec['Speed'] = "Same Day";
+                if (strpos($options->speed, 'standar') !== false) $spec['Speed'] = "Standar";
             }
-            if (@$orderDetail->project_data->design_file) {
+            /*if (@$orderDetail->project_data->design_file) {
                 $idx = 0;
                 $spec['design_file'] = "";
                 foreach ($orderDetail->project_data->design_file as $key => $val) {
@@ -503,15 +503,15 @@ class SpecGenerator
                     }
                     $idx++;
                 }
-            }
+            }*/
             if(@$orderDetail->project_data && in_array($product, array('canvastotebag','spunboundtotebag','spunbond_tote')) && @$options->qtySizeMap){
-                $spec['qtySizeMap'] = "Quantity: <br/>";
+                $spec['Quantity Size Map'] = "";
                 foreach($options->qtySizeMap as $key=>$val){
                     if(!is_array($val)){
                         $val = (array) $val;
                     }
                     if($val['qty'] != 0){
-                        $spec['qtySizeMap'] .= (@$val['color']?:"")." ".(@$val['size']?$val['size'].",":"")." ".(@$val['qty']?:"")."<br/>";
+                        $spec['Quantity Size Map'] .= (@$val['color']?:"")." ".(@$val['size']?$val['size'].",":"")." ".(@$val['qty']?:"")."<br/>";
                     }
                 }
             }
@@ -519,35 +519,35 @@ class SpecGenerator
 
         //spanduk
         if($product == "spanduk"){
-            if (@$options->quantity) $spec['quantity'] = $options->quantity." x ".(@$orderDetail->project_data->display_name?$orderDetail->project_data->display_name:$orderDetail->project_data->prod);
+            if (@$options->quantity) $spec['Quantity'] = $options->quantity." x ".(@$orderDetail->project_data->display_name?$orderDetail->project_data->display_name:$orderDetail->project_data->prod);
             if(@$options->paper){
                 if(@$orderDetail->project_data->properties->Kertas){
-                    $spec['paper'] = "Material: " . $this->paperType($orderDetail->project_data->properties->Kertas);
+                    $spec['Paper'] = $this->paperType($orderDetail->project_data->properties->Kertas);
                 }else{
-                    $spec['paper'] = "Material: " . $this->paperType($options->paper);
+                    $spec['Paper'] = $this->paperType($options->paper);
                 }
             }
-            if (@$options->material) $spec['material'] = "Material: ".$options->material;
-            if (@$options->size) $spec['size'] = "Size: ".$this->specFilter($options->size);
+            if (@$options->material) $spec['Material'] = $options->material;
+            if (@$options->size) $spec['Size'] = $this->specFilter($options->size);
             if(@$options->finishing){
-                $spec['finishing'] = "";
+                $spec['Finishing'] = "";
                 if(is_array($options->finishing)){
                     foreach($options->finishing as $val){
-                        $spec['finishing'] .= $val. "<br/>";
+                        $spec['Finishing'] .= $val. "<br/>";
                     }
                 }else{
-                    $spec['finishing'] .= $options->finishing;
+                    $spec['Finishing'] .= $options->finishing;
                 }
             }
-            if (@$options->width && $options->width > 0) $spec['width'] = "Width: ".$options->width. " cm";
-            if (@$options->height && $options->height > 0) $spec['height'] = "Height: ".$options->height. " cm";
-            if (@$options->size_index && $options->size_index != 'custom') $spec['size_index'] = "Size Index: ".$options->size_index. " cm";
+            if (@$options->width && $options->width > 0) $spec['Width'] = $options->width. " cm";
+            if (@$options->height && $options->height > 0) $spec['Height'] = $options->height. " cm";
+            if (@$options->size_index && $options->size_index != 'custom') $spec['Size Index'] = $options->size_index. " cm";
             if (@$options->speed) {
-                if (strpos($options->speed, 'fast') !== false) $spec['speed'] = "Speed: Fast";
-                if (strpos($options->speed, 'same') !== false) $spec['speed'] = "Speed: Same Day";
-                if (strpos($options->speed, 'standar') !== false) $spec['speed'] = "Speed: Standar";
+                if (strpos($options->speed, 'fast') !== false) $spec['Speed'] = "Fast";
+                if (strpos($options->speed, 'same') !== false) $spec['Speed'] = "Same Day";
+                if (strpos($options->speed, 'standar') !== false) $spec['Speed'] = "Standar";
             }
-            if (@$orderDetail->project_data->design_file) {
+            /*if (@$orderDetail->project_data->design_file) {
                 $idx = 0;
                 $spec['design_file'] = "";
                 foreach ($orderDetail->project_data->design_file as $key => $val) {
@@ -561,33 +561,33 @@ class SpecGenerator
                     }
                     $idx++;
                 }
-            }
+            }*/
         }
 
         if($product == 'packagingbox'){
-            if (@$options->sides) $spec['sides'] = "Sides: ".$options->sides;
-            if (@$options->material) $spec['material'] = "Material: ".$options->material;
-            if (@$options->finishing) $spec['finishing'] = "Finishing: ".$options->finishing;
-            if (@$options->laminate) $spec['laminate'] = "Lamination: ".$options->laminate;
-            if (@$options->size) $spec['size'] = "Size: ".$options->size;
-            if (@$options->sides_sleeve) $spec['sides_sleeve'] = "Sides Sleeve: ".$options->sides_sleeve;
-            if (@$options->material_sleeve) $spec['material_sleeve'] = "Material Sleeve: ".$options->material_sleeve;
-            if (@$options->finishing_sleeve) $spec['finishing_sleeve'] = "Finishing Sleeve: ".$options->finishing_sleeve;
-            if (@$options->size_sleeve) $spec['size_sleeve'] = "Size Sleeve: ".$options->size_sleeve;
+            if (@$options->sides) $spec['Sides'] = $options->sides;
+            if (@$options->material) $spec['Material'] = $options->material;
+            if (@$options->finishing) $spec['Finishing'] = $options->finishing;
+            if (@$options->laminate) $spec['Lamination'] = $options->laminate;
+            if (@$options->size) $spec['Size'] = $options->size;
+            if (@$options->sides_sleeve) $spec['Sides Sleeve'] = $options->sides_sleeve;
+            if (@$options->material_sleeve) $spec['Material Sleeve'] = $options->material_sleeve;
+            if (@$options->finishing_sleeve) $spec['Finishing Sleeve'] = $options->finishing_sleeve;
+            if (@$options->size_sleeve) $spec['Size Sleeve'] = $options->size_sleeve;
         }
 
         if($product == 'lanyard'){
-            if (@$options->sides) $spec['sides'] = "Sides: ".$options->sides;
-            if (@$options->material) $spec['material'] = "Material: ".$options->material;
-            if (@$options->finishing) $spec['finishing'] = "Finishing: ".$options->finishing;
-            if (@$options->size) $spec['size'] = "Size: ".$options->size;
+            if (@$options->sides) $spec['Sides'] = $options->sides;
+            if (@$options->material) $spec['Material'] = $options->material;
+            if (@$options->finishing) $spec['Finishing'] = $options->finishing;
+            if (@$options->size) $spec['Size'] = $options->size;
         }
 
         //others
         if(!in_array($product, array('spanduk','banner','xbanner','rollupbanner','tripodbanner','eventbackwall','eventdesk','popuptable','popupstand','canvastotebag','spunboundtotebag','spunbond_tote','greetingcard','thankyoucard','voucher','stampcard','companyfolder','sticker','canvas_tote','loyaltycard','tshirt','poloshirt','flyer','letterhead','poster','envelope','calendar','brochure','businesscard','squarecard','lanyard','packagingbox'))){
-            if (@$product) $spec['prod'] = "Product: ".$this->specFilter($product);
+            if (@$product) $spec['Product'] = $this->specFilter($product);
             if (@$properties) {
-                $spec['properties'] = '';
+                //$spec['Properties'] = '';
                 if(is_object($properties)){
                     $properties = (array) $properties;
                 }
@@ -595,33 +595,33 @@ class SpecGenerator
                     foreach ($properties as $key => $val) {
                         if (is_array($val)) {
                             foreach ($val as $key2 => $val2) {
-                                $spec['properties'] .= $this->specFilter($key) . " : " . $this->specFilter($val2)."<br/>";
+                                $spec[$this->specFilter($key)] = $this->specFilter($val2);
                             }
                         } else {
-                            $spec['properties'] .= $this->specFilter($key) . " : " . $this->specFilter($val)."<br/>";
+                            $spec[$this->specFilter($key)] = $this->specFilter($val);
                         }
                     }
                 }else{
-                    $spec['properties'] .= $properties;
+                    $spec['Properties'] = $properties;
                 }
             }else{
-                $spec['properties'] = '';
+                //$spec['Properties'] = '';
                 foreach($options as $key=>$val){
                     if(is_array($val)){
                         foreach($val as $key2=>$val2){
-                            $spec['properties'].= $this->specFilter($key)." : ".$this->specFilter($val2)."<br/>";
+                            $spec[$this->specFilter($key)] = $this->specFilter($val2);
                         }
                     }elseif(!in_array($key, array('pro_product_id','pro_product_title','quantity','prod'))){
-                        $spec['properties'].= $this->specFilter($key)." : ".$this->specFilter($val)."<br/>";
+                        $spec[$this->specFilter($key)] = $this->specFilter($val);
                     }
                 }
             }
-            if (@$orderDetail->project_data->design_file) {
+            /*if (@$orderDetail->project_data->design_file) {
                 $spec['design_file'] = "";
                 foreach ($orderDetail->project_data->design_file as $key => $val) {
                     $spec['design_file'] .= "<a href='".$this->createUrl($val)."' style='word-wrap: break-word;'>".substr($val,0,30)."</a><br/>";
                 }
-            }
+            }*/
         }
 
         return $spec;
