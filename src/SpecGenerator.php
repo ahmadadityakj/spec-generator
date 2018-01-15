@@ -407,6 +407,7 @@ class SpecGenerator
             if (@$options->back) $spec['Back'] = ucwords($options->back);
             if (@$options->left) $spec['Left Arm'] = ucwords($options->left);
             if (@$options->right) $spec['Right Arm'] = ucwords($options->right);
+            if (@$options->arm) $spec['Arm'] = ucwords($options->arm);
             if (@$options->nlogo) $spec['Near Colar'] = ucwords($options->nlogo);
             /*if($product == 'poloshirt'){
                 if (@$options->color) $spec['color'] = "Color: " . ucwords($options->color);
@@ -416,6 +417,7 @@ class SpecGenerator
             if (@$options->sides) $spec['Sides'] = ucwords($options->sides);
             if (@$options->size) $spec['Size'] = ucwords($options->size);
             if (@$options->color) $spec['Color'] = ucwords($options->color);
+            if (@$options->method) $spec['Method'] = ucwords($options->method);
 
             if (@$options->speed) {
                 if (strpos($options->speed, 'sticker') !== false) $spec['Speed'] = "Fast, Sticker";
@@ -595,7 +597,7 @@ class SpecGenerator
                     foreach ($properties as $key => $val) {
                         if (is_array($val)) {
                             foreach ($val as $key2 => $val2) {
-                                $spec[$this->specFilter($key)] = $this->specFilter($val2);
+                                $spec[$this->specFilter($key)." (".($key2+1).") "] = $this->specFilter($val2);
                             }
                         } else {
                             $spec[$this->specFilter($key)] = $this->specFilter($val);
