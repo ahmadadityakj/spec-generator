@@ -409,9 +409,6 @@ class SpecGenerator
             if (@$options->right) $spec['Right Arm'] = ucwords($options->right);
             if (@$options->arm) $spec['Arm'] = ucwords($options->arm);
             if (@$options->nlogo) $spec['Near Colar'] = ucwords($options->nlogo);
-            /*if($product == 'poloshirt'){
-                if (@$options->color) $spec['color'] = "Color: " . ucwords($options->color);
-            }*/
             if (@$options->material) $spec['Material'] = ucwords($options->material);
             if (@$options->finishing) $spec['Finishing'] = ucwords($options->finishing);
             if (@$options->sides) $spec['Sides'] = ucwords($options->sides);
