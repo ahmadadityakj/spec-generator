@@ -309,6 +309,8 @@ class SpecGenerator
                 if ($options->finish == 'z_fold') $spec['Folding'] = "Trifold - Z fold";
                 if ($options->finish == 'u_fold') $spec['Folding'] = "Trifold - U fold";
             }
+            if(@$options->finishing) $spec['Finishing'] = $options->finishing;
+            if(@$options->laminate) $spec['Lamination'] = $options->laminate;
             if (@$options->speed) {
                 if (strpos($options->speed, 'fast') !== false) $spec['Speed'] = "Fast";
                 if (strpos($options->speed, 'same') !== false) $spec['Speed'] = "Same Day";
