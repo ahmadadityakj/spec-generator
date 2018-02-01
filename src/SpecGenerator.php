@@ -279,11 +279,9 @@ class SpecGenerator
             }elseif(@$options->paper){
                 $spec['Paper'] = $this->paperType($options->paper);
             }
-            if ($product == 'businesscard') {
-                $spec['Finishing'] = (@$options->finishing ? $options->finishing : "None");
-                $spec['Corner Type'] = (@$options->finish ? $options->finish : "None");
-                $spec['Lamination'] = (@$options->laminate ? $options->laminate : "None");
-            }
+            $spec['Finishing'] = (@$options->finishing ? $options->finishing : "None");
+            $spec['Corner Type'] = (@$options->finish ? $options->finish : "None");
+            $spec['Lamination'] = (@$options->laminate ? $options->laminate : "None");
             if (@$options->speed) {
                 if (strpos($options->speed, 'fast') !== false) $spec['Speed'] = "Fast";
                 if (strpos($options->speed, 'same') !== false) $spec['Speed'] = "Same Day";
@@ -376,6 +374,8 @@ class SpecGenerator
             }
             if (@$options->size) $spec['Size'] = $options->size;
             if (@$options->sides) $spec['Sides'] = $options->sides;
+            if (@$options->laminate) $spec['Lamination'] = $options->laminate;
+            if (@$options->finishing) $spec['Finishing'] = $options->finishing;
             if(@$orderDetail->project_data->properties->Kertas){
                 $spec['Paper'] = $this->paperType($orderDetail->project_data->properties->Kertas);
             }elseif(@$options->paper){
