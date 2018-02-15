@@ -705,7 +705,11 @@ class SpecGenerator
     }
 
     private function specFilter($spec){
-        $custSpec = ucwords($spec);
+        if(!empty($spec) && is_string($spec)){
+            $custSpec = ucwords($spec);
+        }else{
+            $custSpec = $spec;
+        }
         if (empty($spec)){
             $custSpec = '';
         } else if($spec == 'rollup60' || $spec == 'xbanner60') {
