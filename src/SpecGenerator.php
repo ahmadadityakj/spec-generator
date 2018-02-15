@@ -43,7 +43,11 @@ class SpecGenerator
         }
 
         foreach($spec as $key=>$val){
-            $spec[$key] = ucwords($val);
+            if(!empty($val) && is_string($val)){
+                $spec[$key] = ucwords($val);
+            }else{
+                $spec[$key] = $val;
+            }
         }
 
         return $spec;
