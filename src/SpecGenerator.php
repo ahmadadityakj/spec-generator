@@ -427,13 +427,12 @@ class SpecGenerator
                 if (strpos($options->speed, 'sablon') !== false) $spec['Speed'] = "Standar, Sablon";
             }
             if (@$options->qtySizeMap){
-                $spec['Quantity Size Map'] = "";
                 foreach($options->qtySizeMap as $key=>$val){
                     if(!is_array($val)){
                         $val = (array) $val;
                     }
                     if($val['qty'] != 0){
-                        $spec['Quantity Size Map'] .= (@$val['color']?ucwords($val['color']):"")." ".(@$val['size']?$val['size'].",":"")." ".(@$val['qty']?:"")."<br/>";
+                        $spec[$val['color']."(".$val['size'].")"] = $val['qty']."; ";
                     }
                 }
             }
@@ -510,13 +509,12 @@ class SpecGenerator
                 }
             }*/
             if(@$orderDetail->project_data && in_array($product, array('canvastotebag','spunboundtotebag','spunbond_tote')) && @$options->qtySizeMap){
-                $spec['Quantity Size Map'] = "";
                 foreach($options->qtySizeMap as $key=>$val){
                     if(!is_array($val)){
                         $val = (array) $val;
                     }
                     if($val['qty'] != 0){
-                        $spec['Quantity Size Map'] .= (@$val['color']?:"")." ".(@$val['size']?$val['size'].",":"")." ".(@$val['qty']?:"")."<br/>";
+                        $spec[$val['color']."(".$val['size'].")"] = $val['qty']."; ";
                     }
                 }
             }
