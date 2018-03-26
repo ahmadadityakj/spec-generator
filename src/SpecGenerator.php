@@ -432,7 +432,11 @@ class SpecGenerator
                         $val = (array) $val;
                     }
                     if($val['qty'] != 0){
-                        $spec[$val['color']."(".$val['size'].")"] = $val['qty']."; ";
+                        if(isset($val['color']) && isset($val['size'])){
+                            $spec[$val['color']."(".$val['size'].")"] = $val['qty']."; ";
+                        }elseif(isset($val['size'])){
+                            $spec[$val['size']] = $val['qty']."; ";
+                        }
                     }
                 }
             }
@@ -514,7 +518,11 @@ class SpecGenerator
                         $val = (array) $val;
                     }
                     if($val['qty'] != 0){
-                        $spec[$val['color']."(".$val['size'].")"] = $val['qty']."; ";
+                        if(isset($val['color']) && isset($val['size'])) {
+                            $spec[$val['color']."(".$val['size'].")"] = $val['qty']."; ";
+                        }elseif(isset($val['size'])){
+                            $spec[$val['size']] = $val['qty']."; ";
+                        }
                     }
                 }
             }
