@@ -262,7 +262,7 @@ class SpecGenerator
     }
 
     private function generateV3($orderDetail){
-        $product = @$orderDetail->project_data->prod?strtolower($orderDetail->project_data->prod):"other";
+        $product = $this->getProductType($orderDetail->project_data);
         $options = @$orderDetail->project_data->options?: null;
         $properties = @$orderDetail->project_data->properties?: null;
         $spec = array();
@@ -757,5 +757,13 @@ class SpecGenerator
 
     private function replace_with_space($param){
         return str_replace('_',' ',$param);
+    }
+
+    private function getProductType($project_data){
+        $product = @$project_data->prod?strtolower($project_data->prod):"other";
+        if(!in_array($product, array('spanduk','banner','xbanner','rollupbanner','tripodbanner','eventbackwall','eventdesk','popuptable','popupstand','canvastotebag','spunboundtotebag','spunbond_tote','greetingcard','thankyoucard','voucher','stampcard','companyfolder','sticker','canvas_tote','loyaltycard','tshirt','poloshirt','flyer','letterhead','poster','envelope','calendar','brochure','businesscard','squarecard','lanyard','packagingbox','booklet'))) {
+            $product = @$project_data->options->prod?strtolower($project_data->options->prod):"other";
+        }
+        return $product;
     }
 }
