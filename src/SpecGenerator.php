@@ -602,10 +602,10 @@ class SpecGenerator
         if($product == 'booklet'){
             if (@$options->orientation) $spec['Orientation'] = $options->orientation;
             if (@$options->size) $spec['Size'] = $options->size;
-            if (@$options->material_cover) $spec['Material Cover'] = $options->material_cover;
-            if (@$options->material_isi) $spec['Material Isi'] = $options->material_isi;
-            if (@$options->lamination_cover) $spec['Lamination Cover'] = $options->lamination_cover;
-            if (@$options->lamination_isi) $spec['Lamination Isi'] = $options->lamination_isi;
+            if (@$options->material_cover) $spec['Material Cover'] = $this->replace_with_space($options->material_cover);
+            if (@$options->material_isi) $spec['Material Isi'] = $this->replace_with_space($options->material_isi);
+            if (@$options->lamination_cover) $spec['Lamination Cover'] = $this->replace_with_space($options->lamination_cover);
+            if (@$options->lamination_isi) $spec['Lamination Isi'] = $this->replace_with_space($options->lamination_isi);
             if (@$options->page_amount) $spec['Page Amount'] = $options->page_amount;
         }
 
@@ -753,5 +753,9 @@ class SpecGenerator
             $custSpec = 'Black';
         }
         return $custSpec;
+    }
+
+    private function replace_with_space($param){
+        return str_replace('_',' ',$param);
     }
 }
