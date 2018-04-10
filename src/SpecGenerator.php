@@ -262,7 +262,7 @@ class SpecGenerator
     }
 
     private function generateV3($orderDetail){
-        $product = @$orderDetail->project_data->prod?:"other";
+        $product = @$orderDetail->project_data->prod?strtolower($orderDetail->project_data->prod):"other";
         $options = @$orderDetail->project_data->options?: null;
         $properties = @$orderDetail->project_data->properties?: null;
         $spec = array();
