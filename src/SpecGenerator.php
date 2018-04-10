@@ -464,6 +464,11 @@ class SpecGenerator
                     $spec['Quantity'] = $options->quantity." x ".(@$orderDetail->project_data->display_name?$orderDetail->project_data->display_name:$orderDetail->project_data->prod);
                     if(@$options->size && $options->size == '20x7') $spec['Quantity'] .= "book (".$options->quantity." sheet)";
                 }
+                if(@$options->size && $options->size == '20x7'){
+                    $spec['Voucher Type'] = 'Voucher Book';
+                }elseif(@$options->size && $options->size == '15x7'){
+                    $spec['Voucher Type'] = 'Single Voucher';
+                }
             }else{
                 if (@$options->quantity) $spec['Quantity'] = $options->quantity." x ".(@$orderDetail->project_data->display_name?$orderDetail->project_data->display_name:$orderDetail->project_data->prod);
             }
@@ -592,6 +597,16 @@ class SpecGenerator
             if (@$options->material) $spec['Material'] = $options->material;
             if (@$options->finishing) $spec['Finishing'] = $options->finishing;
             if (@$options->size) $spec['Size'] = $options->size;
+        }
+
+        if($product == 'booklet'){
+            if (@$options->orientation) $spec['Orientation'] = $options->orientation;
+            if (@$options->size) $spec['Size'] = $options->size;
+            if (@$options->material_cover) $spec['Material Cover'] = $options->material_cover;
+            if (@$options->material_isi) $spec['Material Isi'] = $options->material_isi;
+            if (@$options->lamination_cover) $spec['Lamination Cover'] = $options->lamination_cover;
+            if (@$options->lamination_isi) $spec['Lamination Isi'] = $options->lamination_isi;
+            if (@$options->page_amount) $spec['Page Amount'] = $options->page_amount;
         }
 
         //others
