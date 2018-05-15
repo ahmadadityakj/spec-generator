@@ -38,7 +38,7 @@ class SpecGenerator
                 $spec = $this->generatePanorama($orderDetail);
                 break;
             case "custom_orders":
-                $spec = $this->generateV3($orderDetail);
+                $spec = $this->generateV3($orderDetail, true);
                 break;
         }
 
@@ -261,7 +261,7 @@ class SpecGenerator
         return $spec;
     }
 
-    private function generateV3($orderDetail){
+    private function generateV3($orderDetail, $forceAllKey = false){
         $product = $this->getProductType($orderDetail->project_data);
         $options = @$orderDetail->project_data->options?: null;
         $properties = @$orderDetail->project_data->properties?: null;
@@ -648,6 +648,37 @@ class SpecGenerator
                     $spec['design_file'] .= "<a href='".$this->createUrl($val)."' style='word-wrap: break-word;'>".substr($val,0,30)."</a><br/>";
                 }
             }*/
+        }
+
+        if(isset($forceAllKey) && $forceAllKey == true){
+            if (@$properties) {
+                if(is_object($properties)){
+                    $properties = (array) $properties;
+                }
+                if(is_array($properties)) {
+                    foreach ($properties as $key => $val) {
+                        if (is_array($val)) {
+                            foreach ($val as $key2 => $val2) {
+                                $spec[$this->specFilter($key)." (".($key2+1).") "] = $this->specFilter($val2);
+                            }
+                        } else {
+                            $spec[$this->specFilter($key)] = $this->specFilter($val);
+                        }
+                    }
+                }else{
+                    $spec['Properties'] = $properties;
+                }
+            }else{
+                foreach($options as $key=>$val){
+                    if(is_array($val)){
+                        foreach($val as $key2=>$val2){
+                            $spec[$this->specFilter($key)] = $this->specFilter($val2);
+                        }
+                    }elseif(!in_array($key, array('pro_product_id','pro_product_title','quantity','prod','layout_id','template_id'))){
+                        $spec[$this->specFilter($key)] = $this->specFilter($val);
+                    }
+                }
+            }
         }
 
         return $spec;
