@@ -637,7 +637,7 @@ class SpecGenerator
                         foreach($val as $key2=>$val2){
                             $spec[$this->specFilter($key)] = $this->specFilter($val2);
                         }
-                    }elseif(!in_array($key, array('pro_product_id','pro_product_title','quantity','prod','layout_id','template_id'))){
+                    }elseif(!in_array($key, array('pro_product_id','pro_product_title','quantity','prod','layout_id','template_id','pro_product_title_edited'))){
                         $spec[$this->specFilter($key)] = $this->specFilter($val);
                     }
                 }
@@ -674,7 +674,7 @@ class SpecGenerator
                         foreach($val as $key2=>$val2){
                             $spec[$this->specFilter($key)] = $this->specFilter($val2);
                         }
-                    }elseif(!in_array($key, array('pro_product_id','pro_product_title','quantity','prod','layout_id','template_id'))){
+                    }elseif(!in_array($key, array('pro_product_id','pro_product_title','quantity','prod','layout_id','template_id','pro_product_title_edited'))){
                         $spec[$this->specFilter($key)] = $this->specFilter($val);
                     }
                 }
