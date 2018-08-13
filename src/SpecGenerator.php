@@ -342,6 +342,8 @@ class SpecGenerator
                     $spec['Board'] = "Board Local 40 + Linen Hitam";
                 }
             }
+            if (@$options->page) $spec['Page'] = $options->page;
+            if (@$options->finishing) $spec['Finishing'] = $options->finishing;
             if (@$options->sheet) $spec['Sheets'] = $options->sheet;
             if (@$options->format) $spec['Format'] = $options->format;
             if (@$options->spiral) $spec['Spiral Color'] = $this->specFilter($options->spiral);
