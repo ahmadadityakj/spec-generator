@@ -335,7 +335,8 @@ class SpecGenerator
             }elseif(@$options->paper){
                 $spec['Paper'] = $this->paperType($options->paper);
             }
-            $spec['Lamination'] = (@$options->laminate ? $options->laminate : "");
+            if(@$options->sides) $spec['Sides'] = $options->sides;
+            $spec['Lamination'] = (@$options->laminate ? $options->laminate : "None");
             if (@$options->size) {
                 $spec['Type'] = $options->size;
                 if($options->size == 'desk'){
