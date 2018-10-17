@@ -584,15 +584,15 @@ class SpecGenerator
         }
 
         if($product == 'packagingbox'){
-            if (@$options->sides) $spec['Sides'] = $options->sides;
-            if (@$options->material) $spec['Material'] = $options->material;
-            if (@$options->finishing) $spec['Finishing'] = $options->finishing;
-            if (@$options->laminate) $spec['Lamination'] = $options->laminate;
-            if (@$options->size) $spec['Size'] = $options->size;
-            if (@$options->sides_sleeve) $spec['Sides Sleeve'] = $options->sides_sleeve;
-            if (@$options->material_sleeve) $spec['Material Sleeve'] = $options->material_sleeve;
-            if (@$options->finishing_sleeve) $spec['Finishing Sleeve'] = $options->finishing_sleeve;
-            if (@$options->size_sleeve) $spec['Size Sleeve'] = $options->size_sleeve;
+            if (@$options->sides) $spec['Sides'] = $this->specValue($options->sides);
+            if (@$options->material) $spec['Material'] = $this->specValue($options->material);
+            if (@$options->finishing) $spec['Finishing'] = $this->specValue($options->finishing);
+            if (@$options->laminate) $spec['Lamination'] = $this->specValue($options->laminate);
+            if (@$options->size) $spec['Size'] = $this->specValue($options->size);
+            if (@$options->sides_sleeve) $spec['Sides Sleeve'] = $this->specValue($options->sides_sleeve);
+            if (@$options->material_sleeve) $spec['Material Sleeve'] = $this->specValue($options->material_sleeve);
+            if (@$options->finishing_sleeve) $spec['Finishing Sleeve'] = $this->specValue($options->finishing_sleeve);
+            if (@$options->size_sleeve) $spec['Size Sleeve'] = $this->specValue($options->size_sleeve);
         }
 
         if($product == 'lanyard'){
@@ -799,5 +799,20 @@ class SpecGenerator
             $product = @$project_data->options->prod?strtolower($project_data->options->prod):"other";
         }
         return $product;
+    }
+
+    private function specValue($spec){
+        $value = $spec;
+        if(is_array($spec) && !empty($spec[0])){
+            $value = '';
+            foreach($spec as $key=>$val){
+                if($key == 0){
+                    $value .= $val;
+                }else{
+                    $value .= ', '.$val;
+                }
+            }
+        }
+        return $value;
     }
 }
