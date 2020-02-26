@@ -602,7 +602,8 @@ class SpecGenerator
             if (@$options->size) $spec['Size'] = $options->size;
         }
 
-        if($product == 'booklet'){
+        //booklet
+        /*if($product == 'booklet'){
             if (@$options->orientation) $spec['Orientation'] = $options->orientation;
             if (@$options->size) $spec['Size'] = $options->size;
             if (@$options->material_cover) $spec['Material Cover'] = $this->replace_with_space($options->material_cover);
@@ -610,10 +611,10 @@ class SpecGenerator
             if (@$options->lamination_cover) $spec['Lamination Cover'] = $this->replace_with_space($options->lamination_cover);
             if (@$options->lamination_isi) $spec['Lamination Isi'] = $this->replace_with_space($options->lamination_isi);
             if (@$options->page_amount) $spec['Page Amount'] = $options->page_amount;
-        }
+        }*/
 
         //others
-        if(!in_array($product, array('spanduk','banner','xbanner','rollupbanner','tripodbanner','eventbackwall','eventdesk','popuptable','popupstand','canvastotebag','spunboundtotebag','spunbond_tote','greetingcard','thankyoucard','voucher','stampcard','companyfolder','sticker','canvas_tote','loyaltycard','tshirt','poloshirt','flyer','letterhead','poster','envelope','calendar','brochure','businesscard','squarecard','lanyard','packagingbox','booklet'))){
+        if(!in_array($product, array('spanduk','banner','xbanner','rollupbanner','tripodbanner','eventbackwall','eventdesk','popuptable','popupstand','canvastotebag','spunboundtotebag','spunbond_tote','greetingcard','thankyoucard','voucher','stampcard','companyfolder','sticker','canvas_tote','loyaltycard','tshirt','poloshirt','flyer','letterhead','poster','envelope','calendar','brochure','businesscard','squarecard','lanyard','packagingbox'))){
             if (@$product) $spec['Product'] = $this->specFilter($product);
             if (@$properties) {
                 //$spec['Properties'] = '';
